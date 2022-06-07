@@ -13,79 +13,282 @@ class Robot:
         true1y = round(ponto3.getY())
         true2x = round(ponto4.getX())
         true2y = round(ponto4.getY())
-        distcantoinfesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()-40-true1y)**2
-        distcantoinfdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()-40-true1y)**2
-        distcantosupesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()+40-true1y)**2
-        distcantosupdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()+40-true1y)**2
-        distcantoinfesqqmaca = (self.centre.getX()-40-true2x)**2 + (self.centre.getY()-40-true2y)**2
-        distcantoinfdirmaca = (self.centre.getX()+40-true2x)**2 + (self.centre.getY()-40-true2y)**2
-        distcantosupesqmaca = (self.centre.getX()-40-true2x)**2 + (self.centre.getY()+40-true2y)**2
-        distcantosupdirmaca = (self.centre.getX()+40-true2x)**2 + (self.centre.getY()+40-true2y)**2
-    def A1C2(self,ponto1):
-        pass
-    def A1C3(self,ponto1):
-        pass
-    def A1B3(self):
-        pass
-    def A2B1(self):
-        pass
+        self.distcantoinfesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()-40-true1y)**2
+        self.distcantoinfdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()-40-true1y)**2
+        self.distcantosupesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()+40-true1y)**2
+        self.distcantosupdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()+40-true1y)**2
+        self.distcantoinfesqqmaca = (true1x-40-true2x)**2 + (true1y-40-true2y)**2
+        self.distcantoinfdirmaca = (true1x+40-true2x)**2 + (true1y-40-true2y)**2
+        self.distcantosupesqmaca = (true1x-40-true2x)**2 + (true1y+40-true2y)**2
+        self.distcantosupdirmaca = (true1x+40-true2x)**2 + (true1y+40-true2y)**2
+    def A1C2(self,ponto2):
+        true1x = round(self.centre.getX())
+        true2x = round(ponto2.getX())
+        true2x = true2x - 40
+        a = (true1x - true2x)
+        for i in range(a):
+            update(30)
+            self.mover(-1,0)
+    def A1C3(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        if self.distcantoinfesqqmaca < self.distcantosupdirmaca:
+            for i in range(80):
+                update(30)
+                self.mover(-1,0)
+        if self.distcantoinfesqqmaca >= self.distcantosupdirmaca:
+            for i in range(80):
+                update(30)
+                self.mover(0,1)
+    def A1B3(self,ponto2):
+        true1x = round(self.centre.getY())
+        true2x = round(ponto2.getY())
+        true2x = true2x + 40
+        a = (true2x - true1x)
+        for i in range(a):
+            update(30)
+            self.mover(0,1)
+    def A2B1(self,ponto1):
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        a = (true2x - true1x) + 40
+        for i in range(a):
+            update(30)
+            self.mover(0,1)
     def A2C1(self):
-        pass
-    def A2C2(self):
-        pass
+        for i in range(80):
+            update(30)
+            self.mover(0,1)
+    def A2C2(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        if  self.distcantosupesqmaca < self.distcantosupdirmaca:
+            true2x = true2x - 40
+            a = (true1x - true2x)
+            for i in range(a):
+                update(30)
+                self.mover(-1,0)
+        if  self.distcantosupesqmaca >= self.distcantosupdirmaca:
+            a= true2x - true1x + 40
+            for i in range(a):
+                update(30)
+                self.mover(1,0)
+        for i in range(80):
+            update(30)
+            self.mover(0,1)
     def A2C3(self):
-        pass
-    def A2B3(self):
-        pass
-    def A3B1(self):
-        pass
-    def A3C1(self):
-        pass
-    def A3C2(self):
-        pass
-    def B1A2(self):
-        pass
+        for i in range(80):
+            update(30)
+            self.mover(0,1)
+    def A2B3(self,ponto1):
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        a = (true2x - true1x) + 40
+        for i in range(a):
+            update(30)
+            self.mover(0,1)
+    def A3B1(self,ponto1):
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        a = (true2x - true1x) + 40
+        for i in range(a):
+            update(30)
+            self.mover(0,1)
+    def A3C1(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        if self.distcantosupesqmaca < self.distcantoinfdirmaca:
+            for i in range(80):
+                update(30)
+                self.mover(0,1)
+        if self.distcantosupesqmaca >= self.distcantoinfdirmaca:
+            for i in range(80):
+                update(30)
+                self.mover(1,0)
+    def A3C2(self,ponto1):
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        a= true2x - true1x + 40
+        for i in range(a):
+            update(30)
+            self.mover(1,0)
+    def B1A2(self,ponto1):
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        true2x = true2x - 40
+        a = (true1x - true2x)
+        for i in range(a):
+            update(30)
+            self.mover(-1,0)
     def B1A3(self):
-        pass
-    def B1B3(self):
-        pass
+        for i in range(80):
+            update(30)
+            self.mover(-1,0)
+    def B1B3(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        if  self.distcantosupesqmaca < self.distcantoinfesqqmaca:
+            true2x = true2x + 40
+            a = (true2x - true1x)
+            for i in range(a):
+                update(30)
+                self.mover(0,1)
+        if  self.distcantosupesqmaca >= self.distcantoinfesqqmaca:
+            true2x = true2x - 40
+            a= true1x - true2x
+            for i in range(a):
+                update(30)
+                self.mover(0,-1)
+        for i in range(80):
+            update(30)
+            self.mover(-1,0)
     def B1C3(self):
-        pass
-    def B1C2(self):
-        pass
-    def B3A2(self):
-        pass
+        for i in range(80):
+            update(30)
+            self.mover(-1,0)
+    def B1C2(self,ponto1):
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        true2x = true2x - 40
+        a = (true1x - true2x)
+        for i in range(a):
+            update(30)
+            self.mover(-1,0)
+    def B3A2(self,ponto1):
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        a= true2x - true1x + 40
+        for i in range(a):
+            update(30)
+            self.mover(1,0)
     def B3A1(self):
-        pass
-    def B3B1(self):
-        pass
+        for i in range(80):
+            update(30)
+            self.mover(1,0)
+    def B3B1(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        if  self.distcantosupdirmaca < self.distcantoinfdirmaca:
+            true2x = true2x + 40
+            a = (true2x - true1x)
+            for i in range(a):
+                update(30)
+                self.mover(0,1)
+        if  self.distcantosupdirmaca >= self.distcantoinfdirmaca:
+            true2x = true2x - 40
+            a= true1x - true2x
+            for i in range(a):
+                update(30)
+                self.mover(0,-1)
+        for i in range(80):
+            update(30)
+            self.mover(1,0)
     def B3C1(self):
-        pass
-    def B3C2(self):
-        pass
-    def C1A2(self):
-        pass
-    def C1A3(self):
-        pass
-    def C1B3(self):
-        pass
-    def C2B1(self):
-        pass
+        for i in range(80):
+            update(30)
+            self.mover(1,0)
+    def B3C2(self,ponto1):
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        a= true2x - true1x + 40
+        for i in range(a):
+            update(30)
+            self.mover(1,0)
+    def C1A2(self,ponto1):
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        true2x = true2x - 40
+        a = (true1x - true2x)
+        for i in range(a):
+            update(30)
+            self.mover(-1,0)
+    def C1A3(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        if self.distcantosupesqmaca < self.distcantoinfdirmaca:
+            for i in range(80):
+                update(30)
+                self.mover(-1,0)
+        if self.distcantosupesqmaca >= self.distcantoinfdirmaca:
+            for i in range(80):
+                update(30)
+                self.mover(0,-1)
+    def C1B3(self,ponto1):
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        true2x = true2x - 40
+        a= true1x - true2x
+        for i in range(a):
+            update(30)
+            self.mover(0,-1)
+    def C2B1(self,ponto1):
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        true2x = true2x - 40
+        a= true1x - true2x
+        for i in range(a):
+            update(30)
+            self.mover(0,-1)
     def C2A1(self):
-        pass
-    def C2A2(self):
-        pass
+        for i in range(80):
+            update(30)
+            self.mover(0,-1)
+    def C2A2(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        if  self.distcantoinfesqqmaca < self.distcantoinfdirmaca:
+            true2x = true2x - 40
+            a = (true1x - true2x)
+            for i in range(a):
+                update(30)
+                self.mover(-1,0)
+        if  self.distcantoinfesqqmaca >= self.distcantoinfdirmaca:
+            a= true2x - true1x + 40
+            for i in range(a):
+                update(30)
+                self.mover(1,0)
+        for i in range(80):
+            update(30)
+            self.mover(0,-1)
     def C2A3(self):
-        pass
-    def C2B3(self):
-        pass
-    def C3B1(self):
-        pass
-    def C3A1(self):
-        pass   
-    def C3A2(self):
-        pass
-    def movimentoobst(self):
+        for i in range(80):
+            update(30)
+            self.mover(0,-1)
+    def C2B3(self,ponto1):
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        true2x = true2x - 40
+        a= true1x - true2x
+        for i in range(a):
+            update(30)
+            self.mover(0,-1)
+    def C3B1(self,ponto1):
+        true1x = round(self.centre.getY())
+        true2x = round(ponto1.getY())
+        true2x = true2x - 40
+        a= true1x - true2x
+        for i in range(a):
+            update(30)
+            self.mover(0,-1)
+    def C3A1(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        if self.distcantoinfesqqmaca < self.distcantosupdirmaca:
+            for i in range(80):
+                update(30)
+                self.mover(0,-1)
+        if self.distcantoinfesqqmaca >= self.distcantosupdirmaca:
+            for i in range(80):
+                update(30)
+                self.mover(1,0) 
+    def C3A2(self,ponto1):
+        true1x = round(self.centre.getX())
+        true2x = round(ponto1.getX())
+        a= true2x - true1x + 40
+        for i in range(a):
+            update(30)
+            self.mover(1,0)
+    def movimentoobst(self,ponto1,ponto2):
         pass
 
 class Maça:
