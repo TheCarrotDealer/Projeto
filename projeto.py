@@ -21,11 +21,9 @@ def main():
     macacentro = win.getMouse()
     maca = Maça(win,macacentro)
     while counter == 0:
-        if body.centre.getX() == 30:
-            pass
+        update(30)
         if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
             body.movimentoobst(obst.obscentro,maca.centro)    
-        update(30)
         if body.centre.getX() == maca.centro.getX():
             x=0
         if body.centre.getX() == maca.centro.getX() and body.centre.getY() > maca.centro.getY():
@@ -46,6 +44,8 @@ def main():
         distrecolha1 = (pontoderecolha.box1centro.getX()-body.centre.getX())**2 + (pontoderecolha.box1centro.getY()-body.centre.getY())**2
         distrecolha2 = (pontoderecolha.box2centro.getX()-body.centre.getX())**2 + (pontoderecolha.box2centro.getY()-body.centre.getY())**2
         if distrecolha1 <= distrecolha2:
+            if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
+                body.movimentoobst(obst.obscentro,pontoderecolha.box1centro)
             x=-1
             y=1
             if body.centre.getX() == pontoderecolha.box1centro.getX():
@@ -63,6 +63,8 @@ def main():
                 
         
         if distrecolha1 > distrecolha2:
+            if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
+                body.movimentoobst(obst.obscentro,pontoderecolha.box2centro)
             x=1
             y=1
             if body.centre.getY() > pontoderecolha.box2centro.getY():

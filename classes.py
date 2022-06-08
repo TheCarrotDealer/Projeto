@@ -290,38 +290,77 @@ class Robot:
             self.mover(1,0)
     def movimentoobst(self,ponto1,ponto2):
         if ponto1.getX() - 40 >= ponto2.getX() and ponto1.getY() + 40 <= ponto2.getY():
-            if ponto1.getX() - 40 <= self.centre.getX() <= ponto1.getX() + 40 and self.centre.getY() <= ponto1.getY() - 40:
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                 self.A1C2(ponto1)
-            if self.centre.getX() >= ponto1.getX() + 40 and self.centre.getY() <= ponto1.getY() - 40:
+            if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                 self.A1C3(ponto1,ponto2)
-            if self.centre.getX() >= ponto1.getX() + 40 and ponto1.getY() - 40 < self.centre.getY() < ponto1.getY() + 40:
+            if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                 self.A1B3(ponto1)
         if ponto1.getX() - 40 <= ponto2.getX() <= ponto1.getX() + 40  and ponto1.getY() + 40 <= ponto2.getY():
-            if self.centre.getX() <= ponto1.getX() - 40 and ponto1.getY() - 40 < self.centre.getY() < ponto1.getY() + 40:
+            if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                 self.A2B1(ponto1)
-            if self.centre.getX() <= ponto1.getX() - 40 and self.centre.getY() <= ponto1.getY() - 40:
+            if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
                 self.A2C1()
-            if ponto1.getX() - 40 <= self.centre.getX() <= ponto1.getX() + 40 and self.centre.getY() <= ponto1.getY() - 40:
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                 self.A2C2(ponto1,ponto2)
-            if self.centre.getX() >= ponto1.getX() + 40 and self.centre.getY() <= ponto1.getY() - 40:
+            if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                 self.A2C3()
-            if self.centre.getX() >= ponto1.getX() + 40 and ponto1.getY() - 40 < self.centre.getY() < ponto1.getY() + 40:
+            if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                 self.A2B3(ponto1)
         if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() + 40 < ponto2.getY():
-            while self.centre.getX() == ponto1.getX() -40 and self.centre.getY() == ponto1.getY() - 40:
-                print("mulheres")
+            if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
+                self.A3C1(ponto1,ponto2)
+            if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                self.A3B1(ponto1)
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                self.A3C2(ponto1)
         if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40:
-            pass
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                self.B1C2(ponto1)
+            if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                self.B1C3()
+            if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                self.B1B3(ponto1,ponto2)
+            if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
+                self.B1A3()
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                self.B1A2(ponto1)
         if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40:
-            pass
+            if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 38 < self.centre.getY():
+                self.B3A1()
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                self.B3A2(ponto1)
+            if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                self.B3B1(ponto1,ponto2)
+            if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
+                self.B3C1()
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                self.B3C2(ponto1)
         if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 > ponto2.getY():
-            pass
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                self.C1A2(ponto1)
+            if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
+                self.C1A3(ponto1,ponto2)
+            if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                self.C1B3(ponto1)
         if ponto1.getX() - 40 < ponto2.getX() < ponto1.getX() + 40 and ponto1.getY() - 40 > ponto2.getY():
-            pass
+            if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                self.C2B1(ponto1)
+            if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 39 < self.centre.getY():
+                self.C2A1()
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                self.C2A2(ponto1,ponto2)
+            if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
+                self.C2A3()
+            if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                self.C2B3(ponto1)
         if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 > ponto2.getY():
-            pass
-
-
+            if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                self.C3B1(ponto1)
+            if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 39 < self.centre.getY():
+                self.C3A1(ponto1,ponto2)
+            if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                self.C3A2(ponto1)
 class Maça:
     def __init__(self,win,ponto):
         poentox = round(ponto.getX())
