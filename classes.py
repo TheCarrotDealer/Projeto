@@ -289,7 +289,38 @@ class Robot:
             update(30)
             self.mover(1,0)
     def movimentoobst(self,ponto1,ponto2):
-        pass
+        if ponto1.getX() - 40 >= ponto2.getX() and ponto1.getY() + 40 <= ponto2.getY():
+            if ponto1.getX() - 40 <= self.centre.getX() <= ponto1.getX() + 40 and self.centre.getY() <= ponto1.getY() - 40:
+                self.A1C2(ponto1)
+            if self.centre.getX() >= ponto1.getX() + 40 and self.centre.getY() <= ponto1.getY() - 40:
+                self.A1C3(ponto1,ponto2)
+            if self.centre.getX() >= ponto1.getX() + 40 and ponto1.getY() - 40 < self.centre.getY() < ponto1.getY() + 40:
+                self.A1B3(ponto1)
+        if ponto1.getX() - 40 <= ponto2.getX() <= ponto1.getX() + 40  and ponto1.getY() + 40 <= ponto2.getY():
+            if self.centre.getX() <= ponto1.getX() - 40 and ponto1.getY() - 40 < self.centre.getY() < ponto1.getY() + 40:
+                self.A2B1(ponto1)
+            if self.centre.getX() <= ponto1.getX() - 40 and self.centre.getY() <= ponto1.getY() - 40:
+                self.A2C1()
+            if ponto1.getX() - 40 <= self.centre.getX() <= ponto1.getX() + 40 and self.centre.getY() <= ponto1.getY() - 40:
+                self.A2C2(ponto1,ponto2)
+            if self.centre.getX() >= ponto1.getX() + 40 and self.centre.getY() <= ponto1.getY() - 40:
+                self.A2C3()
+            if self.centre.getX() >= ponto1.getX() + 40 and ponto1.getY() - 40 < self.centre.getY() < ponto1.getY() + 40:
+                self.A2B3(ponto1)
+        if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() + 40 < ponto2.getY():
+            while self.centre.getX() == ponto1.getX() -40 and self.centre.getY() == ponto1.getY() - 40:
+                print("mulheres")
+        if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40:
+            pass
+        if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40:
+            pass
+        if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 > ponto2.getY():
+            pass
+        if ponto1.getX() - 40 < ponto2.getX() < ponto1.getX() + 40 and ponto1.getY() - 40 > ponto2.getY():
+            pass
+        if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 > ponto2.getY():
+            pass
+
 
 class Maça:
     def __init__(self,win,ponto):

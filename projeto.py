@@ -21,12 +21,10 @@ def main():
     macacentro = win.getMouse()
     maca = Maça(win,macacentro)
     while counter == 0:
-        if body.centre.getX() ==30:
+        if body.centre.getX() == 30:
             pass
         if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
-            pass
-                
-            
+            body.movimentoobst(obst.obscentro,maca.centro)    
         update(30)
         if body.centre.getX() == maca.centro.getX():
             x=0
