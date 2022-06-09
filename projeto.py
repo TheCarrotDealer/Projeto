@@ -5,8 +5,10 @@ def implementação1():
 
     win = GraphWin("Projeto Ai implementação1", 600, 600)
     win.setCoords(0, 0, 600, 600)
-    win.setBackground("green")
+    win.setBackground("chartreuse3")
     body = Robot(win,10,10)
+    a = Point (100, 100)
+    arvore = Arvore(win,a,30)
     pontoderecolha1 = Point(0,570)
     pontoderecolha2 = Point(30,600)
     pontoderecolha3 = Point(570,300)
@@ -19,12 +21,13 @@ def implementação1():
     macacentro = win.getMouse()
     maca = Maça(win,macacentro)
     while True:
-        print("homens")
         while counter == 0:
             update(30)
-            if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
-                body.movimentoobst(obst.obscentro,maca.centro)    
             body.moveobjetive(maca.centro)
+            if (body.centre.getX() - arvore.centre.getX())**2 + (body.centre.getY() - arvore.centre.getY())**2 <= 40**2:
+                body.x =-1
+                body.y = 0
+            body.movimentoobst(obst.obscentro,maca.centro)    
             if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
                 counter = 1
                 maca.existnt()
@@ -35,20 +38,15 @@ def implementação1():
             distrecolha1 = (pontoderecolha.box1centro.getX()-body.centre.getX())**2 + (pontoderecolha.box1centro.getY()-body.centre.getY())**2
             distrecolha2 = (pontoderecolha.box2centro.getX()-body.centre.getX())**2 + (pontoderecolha.box2centro.getY()-body.centre.getY())**2
             if distrecolha1 <= distrecolha2:
-                if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
-                    body.movimentoobst(obst.obscentro,pontoderecolha.box1centro)
                 body.moveobjetive(pontoderecolha.box1centro)
-                
+                body.movimentoobst(obst.obscentro,pontoderecolha.box1centro)
                 if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
                     macacentro = win.getMouse()
                     maca = Maça(win,macacentro)
                     counter = 0
-                    
-            
             if distrecolha1 > distrecolha2:
-                if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
-                    body.movimentoobst(obst.obscentro,pontoderecolha.box2centro)
                 body.moveobjetive(pontoderecolha.box2centro)
+                body.movimentoobst(obst.obscentro,pontoderecolha.box2centro)
                 if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
                     macacentro = win.getMouse()
                     maca = Maça(win,macacentro)
