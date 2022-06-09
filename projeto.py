@@ -1,9 +1,9 @@
 from graphics import * 
 from classes import *
 
-def main():
+def implementação1():
 
-    win = GraphWin("Projeto Ai apanhar maças", 600, 600)
+    win = GraphWin("Projeto Ai implementação1", 600, 600)
     win.setCoords(0, 0, 600, 600)
     win.setBackground("green")
     body = Robot(win,10,10)
@@ -84,4 +84,35 @@ def main():
               
 
         body.mover(x,y)
-main()
+def implementação2():
+    pass
+def implementação3():
+    pass
+def implementação4():
+    pass
+def menu():
+    win1 = GraphWin("Projeto Ai Menu", 600, 600)
+    win1.setCoords(0, 0, 600, 600)
+    point1 = Point(30,30)
+    point2 = Point(170,70)
+    point3 = Point( 200,30)
+    point4 = Point(350,70)
+    point5 = Point( 380,30)
+    point6 = Point(520,70)
+    point7 = Point( 230,130)
+    point8 = Point(370,170)
+    implementacao1 = butão(win1,point1,point2,"implementação 1")
+    implementacao2 = butão(win1,point3,point4,"implementação 2")
+    implementacao3 = butão(win1,point5,point6,"implementação 3")
+    implementacao4 = butão(win1,point7,point8,"implementação 4")
+    click = win1.getMouse()
+    while True:
+        if implementacao1.clicked(click):
+            implementação1()
+        if implementacao2.clicked(click):
+            implementação2()
+        if implementacao3.clicked(click):
+            implementação3()
+        if implementacao4.clicked(click):
+            implementação4()
+menu()

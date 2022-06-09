@@ -399,3 +399,19 @@ class Obstaculo:
         self.obscentro = Point((true1x + true2x)/2,(true1y + true2y)/2)
         self.obs.setFill("azure4")
         self.obs.draw(win)
+class butão: 
+    def __init__(self,win1,point1,point2,lable):
+        self.leftcorner = point1
+        self.rightcorner = point2
+        x = round((point1.getX() + point2.getX())/2)
+        y = round((point1.getY() + point2.getY())/2)
+        self.centre = Point(x,y)
+        self.button = Rectangle(point1,point2)
+        self.button.setFill("lightgray")
+        self.button.draw(win1)
+        self.lable = Text(self.centre,lable)
+        self.lable.draw(win1)
+    def clicked(self,point):
+        self.active = True
+        return (self.active and self.leftcorner.getX() < point.getX() < self.rightcorner.getX() and self.leftcorner.getY() < point.getY()< self.rightcorner.getY())
+
