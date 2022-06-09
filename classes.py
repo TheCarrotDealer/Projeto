@@ -13,10 +13,14 @@ class Robot:
         true1y = round(ponto3.getY())
         true2x = round(ponto4.getX())
         true2y = round(ponto4.getY())
-        self.distcantoinfesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()-40-true1y)**2
-        self.distcantoinfdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()-40-true1y)**2
-        self.distcantosupesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()+40-true1y)**2
-        self.distcantosupdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()+40-true1y)**2
+        self.distesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()-true1y)**2
+        self.distinf = (self.centre.getX()-true1x)**2 + (self.centre.getY()-40-true1y)**2
+        self.distsup = (self.centre.getX()-true1x)**2 + (self.centre.getY()+40-true1y)**2
+        self.distdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()-true1y)**2
+        self.distesqmaca = (true1x-40-true1x)**2 + (true1y-true1y)**2
+        self.distinfmaca = (true1x-true1x)**2 + (true1y-40-true1y)**2
+        self.distsupmaca = (true1x-true1x)**2 + (true1y+40-true1y)**2
+        self.distdirmaca = (true1x+40-true1x)**2 + (true1y-true1y)**2
         self.distcantoinfesqqmaca = (true1x-40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantoinfdirmaca = (true1x+40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantosupesqmaca = (true1x-40-true2x)**2 + (true1y+40-true2y)**2
@@ -375,7 +379,113 @@ class Robot:
             self.x = 0
         if self.centre.getY() == ponto1.getY():
             self.y = 0
-    
+    def circA1A2(self):
+        self.x = 0
+        self.y = 1
+    def circA1B1(self):
+        self.x = -1
+        self.y = 0
+    def circA1B2(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        if self.distsupmaca + self.distdir  <= self.distesqmaca + self.distinf:
+            self.x = 1
+            self.y = 0
+        if self.distsupmaca + self.distdir  > self.distesqmaca + self.distinf:
+            self.x = 0
+            self.y = -1
+    def circA1A1(self):
+        self.x = -1
+        self.y = 1
+    def circA2A1(self):
+        self.x = 0
+        self.y = 1
+    def circA2B1(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        if self.distsupmaca + self.distesq  <= self.distsupmaca + self.distinf:
+            self.x = -1
+            self.y = 0
+        if self.distsupmaca + self.distesq  > self.distsupmaca + self.distinf:
+            self.x = 0
+            self.y = -1
+    def circA2B2(self):
+        self.x = 1
+        self.y = 0
+    def circA2A2(self):
+        self.x = 1
+        self.y = 1
+    def circB1A1(self):
+        self.x = -1
+        self.y = 0
+    def circB1A2(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        if self.distsup + self.distesqmaca  <= self.distsup + self.distinfmaca:
+            self.x = 0
+            self.y = 1
+        if self.distsup + self.distesqmaca  > self.distsup + self.distinfmaca:
+            self.x = 1
+            self.y = 0
+    def circB1B2(self):
+        self.x = 0
+        self.y = -1
+    def circB1B1(self):
+        self.x = -1
+        self.y = -1
+    def circB2A1(self,ponto1,ponto2):
+        self.distancias(ponto1,ponto2)
+        if self.distsup + self.distdirmaca  <= self.distesq + self.distinfmaca:
+            self.x = 0
+            self.y = 1
+        if self.distsup + self.distdirmaca  > self.distesq + self.distinfmaca:
+            self.x = -1
+            self.y = 0
+    def circB2A2(self):
+        self.x = 1
+        self.y = 0
+    def circB2B1(self):
+        self.x = 0
+        self.y = -1
+    def circB2B2(self):
+        self.x = 1
+        self.y = -1
+    def movearvore(self,ponto1,ponto2):
+        if (self.centre.getX() - ponto1.getX())**2 + (self.centre.getY() - ponto1.getY())**2 <= 40**2:
+            if ponto2.getX() <= ponto1.getX() and ponto2.getY() >= ponto1.getY():
+                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
+                    self.circA1A1()
+                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
+                    self.circA1B1()
+                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
+                    self.circA1B2(ponto1,ponto2)
+                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
+                    self.circA1A2()
+            if ponto2.getX() < ponto1.getX() and ponto2.getY() < ponto1.getY():
+                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
+                    self.circB1A1()
+                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
+                    self.circB1B1()
+                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
+                    self.circB1B2()
+                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
+                    self.circB1A2(ponto1,ponto2)
+            if ponto2.getX() >= ponto1.getX() and ponto2.getY() <= ponto1.getY():
+                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
+                    self.circB2A1(ponto1,ponto2)
+                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
+                    self.circB2B1()
+                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
+                    self.circB2B2()
+                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
+                    self.circB2A2()
+            if ponto2.getX() > ponto1.getX() and ponto2.getY() > ponto1.getY():
+                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
+                    self.circA2A1()
+                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
+                    self.circA2B1(ponto1,ponto2)
+                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
+                    self.circA2B2()
+                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
+                    self.circA2A2()
+
 
 class Maça:
     def __init__(self,win,ponto):

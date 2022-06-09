@@ -24,9 +24,7 @@ def implementação1():
         while counter == 0:
             update(30)
             body.moveobjetive(maca.centro)
-            if (body.centre.getX() - arvore.centre.getX())**2 + (body.centre.getY() - arvore.centre.getY())**2 <= 40**2:
-                body.x =-1
-                body.y = 0
+            body.movearvore(arvore.centre,maca.centro)
             body.movimentoobst(obst.obscentro,maca.centro)    
             if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
                 counter = 1
