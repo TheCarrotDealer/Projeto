@@ -361,6 +361,20 @@ class Robot:
                 self.C3A1(ponto1,ponto2)
             if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
                 self.C3A2(ponto1)
+    def moveobjetive(self,ponto1):
+        if self.centre.getX() < ponto1.getX():
+            self.x = 1
+        if self.centre.getX() > ponto1.getX():
+            self.x = -1
+        if self.centre.getY() < ponto1.getY():
+            self.y = 1
+        if self.centre.getY() > ponto1.getY():
+            self.y = -1
+        if self.centre.getX() == ponto1.getX():
+            self.x = 0
+        if self.centre.getY() == ponto1.getY():
+            self.y = 0
+
 class Maça:
     def __init__(self,win,ponto):
         poentox = round(ponto.getX())

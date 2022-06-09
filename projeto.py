@@ -12,78 +12,49 @@ def implementação1():
     pontoderecolha3 = Point(570,300)
     pontoderecolha4 = Point(600,330)
     pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win)
-    x=1 
-    y=1
     counter = 0
     pontoobs = Point(270,270)
     pontoobs1 = Point(330,330)
     obst = Obstaculo(pontoobs,pontoobs1,win)
     macacentro = win.getMouse()
     maca = Maça(win,macacentro)
-    while counter == 0:
-        update(30)
-        if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
-            body.movimentoobst(obst.obscentro,maca.centro)    
-        if body.centre.getX() == maca.centro.getX():
-            x=0
-        if body.centre.getX() == maca.centro.getX() and body.centre.getY() > maca.centro.getY():
-            x=0
-            y=-1
-        if body.centre.getY() == maca.centro.getY():
-            y=0
-        if body.centre.getY() == maca.centro.getY() and body.centre.getX() > maca.centro.getX():
-            y=0
-            x=-1
-        if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
-            counter = 1
-            maca.existnt()
-        
-        body.mover(x,y)
-    while counter == 1:
-        update(30)
-        distrecolha1 = (pontoderecolha.box1centro.getX()-body.centre.getX())**2 + (pontoderecolha.box1centro.getY()-body.centre.getY())**2
-        distrecolha2 = (pontoderecolha.box2centro.getX()-body.centre.getX())**2 + (pontoderecolha.box2centro.getY()-body.centre.getY())**2
-        if distrecolha1 <= distrecolha2:
+    while True:
+        print("homens")
+        while counter == 0:
+            update(30)
             if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
-                body.movimentoobst(obst.obscentro,pontoderecolha.box1centro)
-            x=-1
-            y=1
-            if body.centre.getX() == pontoderecolha.box1centro.getX():
-                x=0
-            if body.centre.getX() == pontoderecolha.box1centro.getX() and body.centre.getY() > pontoderecolha.box1centro.getY():
-                x=0
-                y=-1
-            if body.centre.getY() == pontoderecolha.box1centro.getY():
-                y=0
-            if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() < pontoderecolha.box1centro.getX():
-                y=0
-                x=-x
-            if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
-                print("homens")
+                body.movimentoobst(obst.obscentro,maca.centro)    
+            body.moveobjetive(maca.centro)
+            if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
+                counter = 1
+                maca.existnt()
+            
+            body.mover(body.x,body.y)
+        while counter == 1:
+            update(30)
+            distrecolha1 = (pontoderecolha.box1centro.getX()-body.centre.getX())**2 + (pontoderecolha.box1centro.getY()-body.centre.getY())**2
+            distrecolha2 = (pontoderecolha.box2centro.getX()-body.centre.getX())**2 + (pontoderecolha.box2centro.getY()-body.centre.getY())**2
+            if distrecolha1 <= distrecolha2:
+                if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
+                    body.movimentoobst(obst.obscentro,pontoderecolha.box1centro)
+                body.moveobjetive(pontoderecolha.box1centro)
                 
-        
-        if distrecolha1 > distrecolha2:
-            if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
-                body.movimentoobst(obst.obscentro,pontoderecolha.box2centro)
-            x=1
-            y=1
-            if body.centre.getY() > pontoderecolha.box2centro.getY():
-                y=-1
-            if body.centre.getX() == pontoderecolha.box2centro.getX():
-                x=0
-            if body.centre.getX() == pontoderecolha.box2centro.getX() and body.centre.getY() > pontoderecolha.box2centro.getY():
-                x=0
-                y=-1
-            if body.centre.getY() == pontoderecolha.box2centro.getY():
-                y=0
-            if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() > pontoderecolha.box2centro.getX():
-                y=0
-                x=-1
-            if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
-                print("homens")
-              
+                if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
+                    macacentro = win.getMouse()
+                    maca = Maça(win,macacentro)
+                    counter = 0
+                    
+            
+            if distrecolha1 > distrecolha2:
+                if body.centre.getX() > (obst.obscentro.getX()-40) and body.centre.getY() > (obst.obscentro.getY()-40) and body.centre.getX() < (obst.obscentro.getX()+40) and body.centre.getY() < (obst.obscentro.getY()+40) :
+                    body.movimentoobst(obst.obscentro,pontoderecolha.box2centro)
+                body.moveobjetive(pontoderecolha.box2centro)
+                if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
+                    macacentro = win.getMouse()
+                    maca = Maça(win,macacentro)
+                    counter = 0
+            body.mover(body.x,body.y)
 
-        body.mover(x,y)
 def implementação2():
     pass
 def implementação3():
