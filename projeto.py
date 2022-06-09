@@ -6,7 +6,6 @@ def implementação1():
     win = GraphWin("Projeto Ai implementação1", 600, 600)
     win.setCoords(0, 0, 600, 600)
     win.setBackground("chartreuse3")
-    body = Robot(win,10,10)
     a = Point (300, 300)
     arvore = Arvore(win,a,30)
     pontoderecolha1 = Point(0,570)
@@ -15,6 +14,7 @@ def implementação1():
     pontoderecolha4 = Point(600,330)
     pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win)
     counter = 0
+    body = Robot(win,10,10)
     macacentro = win.getMouse()
     maca = Maça(win,macacentro)
     while True:
@@ -51,10 +51,18 @@ def implementação2():
         win2 = GraphWin("Projeto Ai implementação2", 600, 600)
         win2.setCoords(0, 0, 600, 600)
         win2.setBackground("chartreuse3")
-        body = Robot(win2,10,10)
         a = Point (300, 300)
         b = Point (450, 450)
         c = Point (150, 150)
+        pontopedra1 = Point(120,420)
+        pontopedra2 = Point(420,120)
+        pontopedra12 = Point(180,480)
+        pontopedra22 = Point(480,180)
+        bateriaponto1 = Point(570,570)
+        bateriaponto2 = Point(600,600)
+        bateria = baterystation(bateriaponto1,bateriaponto2,win2)
+        pedra1 = Obstaculo(pontopedra1,pontopedra12,win2)
+        pedra2 = Obstaculo(pontopedra2,pontopedra22,win2)
         arvore2 = Arvore(win2,c,30)
         arvore3 = Arvore(win2,b,30)
         arvore = Arvore(win2,a,30)
@@ -64,15 +72,19 @@ def implementação2():
         pontoderecolha4 = Point(600,330)
         pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win2)
         counter = 0
+        body = Robot(win2,10,10)
         macacentro = win2.getMouse()
         maca = Maça(win2,macacentro)
         while True:
             while counter == 0:
                 update(30)
                 body.moveobjetive(maca.centro)
+                body.countbatery(bateria.centro)
                 body.movearvore(arvore.centre,maca.centro)    
                 body.movearvore(arvore2.centre,maca.centro)   
-                body.movearvore(arvore3.centre,maca.centro)   
+                body.movearvore(arvore3.centre,maca.centro)  
+                body.movimentoobst(pedra1.obscentro,maca.centro) 
+                body.movimentoobst(pedra2.obscentro,maca.centro)
                 if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
                     counter = 1
                     maca.existnt()
@@ -84,18 +96,24 @@ def implementação2():
                 distrecolha2 = (pontoderecolha.box2centro.getX()-body.centre.getX())**2 + (pontoderecolha.box2centro.getY()-body.centre.getY())**2
                 if distrecolha1 <= distrecolha2:
                     body.moveobjetive(pontoderecolha.box1centro)
+                    body.countbatery(bateria.centro)
                     body.movearvore(arvore.centre,pontoderecolha.box1centro) 
                     body.movearvore(arvore2.centre,pontoderecolha.box1centro)   
-                    body.movearvore(arvore3.centre,pontoderecolha.box1centro)   
+                    body.movearvore(arvore3.centre,pontoderecolha.box1centro)  
+                    body.movimentoobst(pedra1.obscentro,pontoderecolha.box1centro) 
+                    body.movimentoobst(pedra2.obscentro,pontoderecolha.box1centro) 
                     if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
                         counter = 0
                 if distrecolha1 > distrecolha2:
                     body.moveobjetive(pontoderecolha.box2centro)
+                    body.countbatery(bateria.centro)
                     body.movearvore(arvore.centre,pontoderecolha.box2centro) 
                     body.movearvore(arvore2.centre,pontoderecolha.box2centro)   
-                    body.movearvore(arvore3.centre,pontoderecolha.box2centro)   
+                    body.movearvore(arvore3.centre,pontoderecolha.box2centro) 
+                    body.movimentoobst(pedra1.obscentro,pontoderecolha.box2centro) 
+                    body.movimentoobst(pedra2.obscentro,pontoderecolha.box2centro)  
                     if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)

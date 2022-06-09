@@ -2,12 +2,18 @@ from graphics import *
 class Robot:
     def __init__(self,win,ax,bx): 
         self.body= Circle(Point(ax,bx),10)
+        self.bodybatery= Circle(Point(ax,bx),5)
         self.body.setFill("white")
         self.body.draw(win)
+        self.bodybatery.setFill("light green")
+        self.bodybatery.draw(win)
         self.centre = Point(ax,bx)
+        self.batery = 0
     def mover(self,dx,dy):
+        self.bodybatery.move(dx,dy)
         self.body.move(dx,dy)
         self.centre.move(dx,dy)
+        self.batery = self.batery + 1
     def distancias(self,ponto3,ponto4):
         true1x = round(ponto3.getX())
         true1y = round(ponto3.getY())
@@ -486,6 +492,17 @@ class Robot:
                     self.circA2B2()
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circA2A2()
+    def countbatery(self,ponto1):
+        if self.batery >= 100:
+            self.bodybatery.setFill("yellow")
+        if self.batery >= 200:
+            self.bodybatery.setFill("red")
+        if self.batery >= 4800:
+            self.moveobjetive(ponto1)
+            if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY():
+                self.batery=0
+
+
 
 
 class Maça:
@@ -547,4 +564,14 @@ class butão:
     def clicked(self,point):
         self.active = True
         return (self.active and self.leftcorner.getX() < point.getX() < self.rightcorner.getX() and self.leftcorner.getY() < point.getY()< self.rightcorner.getY())
+class baterystation:
+    def __init__(self,ponto1,ponto2,win):
+        true1x = round(ponto1.getX())
+        true1y = round(ponto1.getY())
+        true2x = round(ponto2.getX())
+        true2y = round(ponto2.getY())
+        self.obs = Rectangle(Point(true1x,true1y),Point(true2x,true2y))
+        self.centro = Point((true1x + true2x)/2,(true1y + true2y)/2)
+        self.obs.setFill("chocolate4")
+        self.obs.draw(win)
 
