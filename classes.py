@@ -17,10 +17,10 @@ class Robot:
         self.distinf = (self.centre.getX()-true1x)**2 + (self.centre.getY()-40-true1y)**2
         self.distsup = (self.centre.getX()-true1x)**2 + (self.centre.getY()+40-true1y)**2
         self.distdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()-true1y)**2
-        self.distesqmaca = (true1x-40-true1x)**2 + (true1y-true1y)**2
-        self.distinfmaca = (true1x-true1x)**2 + (true1y-40-true1y)**2
-        self.distsupmaca = (true1x-true1x)**2 + (true1y+40-true1y)**2
-        self.distdirmaca = (true1x+40-true1x)**2 + (true1y-true1y)**2
+        self.distesqmaca = (true2x-40-true1x)**2 + (true2y-true1y)**2
+        self.distinfmaca = (true2x-true1x)**2 + (true2y-40-true1y)**2
+        self.distsupmaca = (true2x-true1x)**2 + (true2y+40-true1y)**2
+        self.distdirmaca = (true2x+40-true1x)**2 + (true2y-true1y)**2
         self.distcantoinfesqqmaca = (true1x-40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantoinfdirmaca = (true1x+40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantosupesqmaca = (true1x-40-true2x)**2 + (true1y+40-true2y)**2
@@ -387,10 +387,10 @@ class Robot:
         self.y = 0
     def circA1B2(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
-        if self.distsupmaca + self.distdir  <= self.distesqmaca + self.distinf:
+        if self.distsupmaca + self.distdir  > self.distesqmaca + self.distinf:
             self.x = 1
             self.y = 0
-        if self.distsupmaca + self.distdir  > self.distesqmaca + self.distinf:
+        if self.distsupmaca + self.distdir  <= self.distesqmaca + self.distinf:
             self.x = 0
             self.y = -1
     def circA1A1(self):
@@ -401,10 +401,11 @@ class Robot:
         self.y = 1
     def circA2B1(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
-        if self.distsupmaca + self.distesq  <= self.distsupmaca + self.distinf:
+        if self.distsupmaca + self.distesq  > self.distdirmaca + self.distinf:
             self.x = -1
             self.y = 0
-        if self.distsupmaca + self.distesq  > self.distsupmaca + self.distinf:
+            print(self.distsupmaca + self.distesq,self.distdirmaca + self.distinf)
+        if self.distsupmaca + self.distesq  <= self.distdirmaca + self.distinf:
             self.x = 0
             self.y = -1
     def circA2B2(self):
@@ -418,10 +419,10 @@ class Robot:
         self.y = 0
     def circB1A2(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
-        if self.distsup + self.distesqmaca  <= self.distsup + self.distinfmaca:
+        if self.distsup + self.distesqmaca  > self.distdir + self.distinfmaca:
             self.x = 0
             self.y = 1
-        if self.distsup + self.distesqmaca  > self.distsup + self.distinfmaca:
+        if self.distsup + self.distesqmaca  <= self.distdir + self.distinfmaca:
             self.x = 1
             self.y = 0
     def circB1B2(self):
@@ -432,10 +433,10 @@ class Robot:
         self.y = -1
     def circB2A1(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
-        if self.distsup + self.distdirmaca  <= self.distesq + self.distinfmaca:
+        if self.distsup + self.distdirmaca  > self.distesq + self.distinfmaca:
             self.x = 0
             self.y = 1
-        if self.distsup + self.distdirmaca  > self.distesq + self.distinfmaca:
+        if self.distsup + self.distdirmaca  <= self.distesq + self.distinfmaca:
             self.x = -1
             self.y = 0
     def circB2A2(self):
