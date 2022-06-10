@@ -410,7 +410,6 @@ class Robot:
         if self.distsupmaca + self.distesq  > self.distdirmaca + self.distinf:
             self.x = -1
             self.y = 0
-            print(self.distsupmaca + self.distesq,self.distdirmaca + self.distinf)
         if self.distsupmaca + self.distesq  <= self.distdirmaca + self.distinf:
             self.x = 0
             self.y = -1
@@ -493,11 +492,13 @@ class Robot:
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circA2A2()
     def countbatery(self,ponto1):
-        if self.batery >= 100:
+        if self.batery >= 0:
+            self.bodybatery.setFill("light green")
+        if self.batery >= 300:
             self.bodybatery.setFill("yellow")
-        if self.batery >= 200:
+        if self.batery >= 450:
             self.bodybatery.setFill("red")
-        if self.batery >= 4800:
+        if self.batery >= 800:
             self.moveobjetive(ponto1)
             if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY():
                 self.batery=0
