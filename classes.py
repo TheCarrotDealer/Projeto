@@ -508,7 +508,9 @@ class Robot:
                 self.batery=0
     def random(self,numb):
         self.numbarvores = randrange(0,numb+1)
+        print(self.numbarvores)
         self.numbpedras = numb - self.numbarvores 
+        print(self.numbpedras)
         self.obstgrouparvores = []
         self.obstgrouppedras = []
         self.obstgroup = []
@@ -594,9 +596,24 @@ class Robot:
                 if counter == 0:
                     self.obstgrouparvores.append(i)
                     self.obstgroup.append(i)
+    def file(self,file):
+        self.obstgrouparvores = []
+        self.obstgrouppedras = []
+        for i in file.readlines():
+            i = str(i)
+            try:
+                x , y , ob = i.split(" ")
+                x = int(x)
+                y = int(y)
+                ob = int(ob)
+                ponto = Point(x,y)
+                if ob == 1:
+                    self.obstgrouppedras.append(ponto)
+                if ob == 2:
+                    self.obstgrouparvores.append(ponto)
 
-
-
+            except ValueError:
+                break
 class Maça:
     def __init__(self,win,ponto):
         poentox = round(ponto.getX())
