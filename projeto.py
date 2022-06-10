@@ -80,11 +80,14 @@ def implementação2():
                 update(30)
                 body.moveobjetive(maca.centro)
                 body.countbatery(bateria.centro)
-                body.movearvore(arvore.centre,maca.centro)    
-                body.movearvore(arvore2.centre,maca.centro)   
-                body.movearvore(arvore3.centre,maca.centro)  
-                body.movimentoobst(pedra1.obscentro,maca.centro) 
-                body.movimentoobst(pedra2.obscentro,maca.centro)
+                objective = maca.centro
+                if body.bateryactive == 1:
+                    objective = bateria.centro
+                body.movearvore(arvore.centre,objective)    
+                body.movearvore(arvore2.centre,objective)   
+                body.movearvore(arvore3.centre,objective)  
+                body.movimentoobst(pedra1.obscentro,objective) 
+                body.movimentoobst(pedra2.obscentro,objective)
                 if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
                     counter = 1
                     maca.existnt()
@@ -97,11 +100,14 @@ def implementação2():
                 if distrecolha1 <= distrecolha2:
                     body.moveobjetive(pontoderecolha.box1centro)
                     body.countbatery(bateria.centro)
-                    body.movearvore(arvore.centre,pontoderecolha.box1centro) 
-                    body.movearvore(arvore2.centre,pontoderecolha.box1centro)   
-                    body.movearvore(arvore3.centre,pontoderecolha.box1centro)  
-                    body.movimentoobst(pedra1.obscentro,pontoderecolha.box1centro) 
-                    body.movimentoobst(pedra2.obscentro,pontoderecolha.box1centro) 
+                    objective = pontoderecolha.box1centro
+                    if body.bateryactive == 1:
+                        objective = bateria.centro
+                    body.movearvore(arvore.centre,objective) 
+                    body.movearvore(arvore2.centre,objective)   
+                    body.movearvore(arvore3.centre,objective)  
+                    body.movimentoobst(pedra1.obscentro,objective) 
+                    body.movimentoobst(pedra2.obscentro,objective) 
                     if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
@@ -109,11 +115,14 @@ def implementação2():
                 if distrecolha1 > distrecolha2:
                     body.moveobjetive(pontoderecolha.box2centro)
                     body.countbatery(bateria.centro)
-                    body.movearvore(arvore.centre,pontoderecolha.box2centro) 
-                    body.movearvore(arvore2.centre,pontoderecolha.box2centro)   
-                    body.movearvore(arvore3.centre,pontoderecolha.box2centro) 
-                    body.movimentoobst(pedra1.obscentro,pontoderecolha.box2centro) 
-                    body.movimentoobst(pedra2.obscentro,pontoderecolha.box2centro)  
+                    objective = pontoderecolha.box2centro
+                    if body.bateryactive == 1:
+                        objective = bateria.centro
+                    body.movearvore(arvore.centre,objective) 
+                    body.movearvore(arvore2.centre,objective)   
+                    body.movearvore(arvore3.centre,objective) 
+                    body.movimentoobst(pedra1.obscentro,objective) 
+                    body.movimentoobst(pedra2.obscentro,objective)  
                     if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
@@ -133,13 +142,29 @@ def implementação3():
         pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win2)
         counter = 0
         body = Robot(win2,10,10)
+        body.random(4)
+        for i in body.obstgrouppedras:
+            thex = i.getX() -30
+            they = i.getY() -30
+            the1x = i.getX() +30
+            the1y = i.getY() +30
+            i = Obstaculo(Point(thex,they),Point(the1x,the1y),win2)
+        for a in body.obstgrouparvores:
+            a = Arvore(win2,a,30)
         macacentro = win2.getMouse()
         maca = Maça(win2,macacentro)
         while True:
             while counter == 0:
                 update(30)
                 body.moveobjetive(maca.centro)
-                body.countbatery(bateria.centro)
+                body.countbatery(bateria.centro) 
+                objective = maca.centro
+                if body.bateryactive == 1:
+                    objective = bateria.centro
+                for e in body.obstgrouppedras:
+                    body.movimentoobst(e,objective)
+                for d in body.obstgrouparvores:
+                    body.movearvore(d,objective)
                 if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
                     counter = 1
                     maca.existnt()
@@ -152,6 +177,13 @@ def implementação3():
                 if distrecolha1 <= distrecolha2:
                     body.moveobjetive(pontoderecolha.box1centro)
                     body.countbatery(bateria.centro) 
+                    objective = pontoderecolha.box1centro
+                    if body.bateryactive == 1:
+                        objective = bateria.centro
+                    for g in body.obstgrouppedras:
+                        body.movimentoobst(g,objective)
+                    for h in body.obstgrouparvores:
+                        body.movearvore(h,objective)
                     if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
@@ -159,6 +191,13 @@ def implementação3():
                 if distrecolha1 > distrecolha2:
                     body.moveobjetive(pontoderecolha.box2centro)
                     body.countbatery(bateria.centro)
+                    objective = pontoderecolha.box2centro
+                    if body.bateryactive == 1:
+                        objective = bateria.centro
+                    for j in body.obstgrouppedras:
+                        body.movimentoobst(j,objective)
+                    for k in body.obstgrouparvores:
+                        body.movearvore(k,objective)
                     if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)

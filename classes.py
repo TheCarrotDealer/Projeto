@@ -1,4 +1,6 @@
+from random import *
 from graphics import * 
+from math import *
 class Robot:
     def __init__(self,win,ax,bx): 
         self.body= Circle(Point(ax,bx),10)
@@ -492,6 +494,7 @@ class Robot:
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circA2A2()
     def countbatery(self,ponto1):
+        self.bateryactive = 0
         if self.batery >= 0:
             self.bodybatery.setFill("light green")
         if self.batery >= 300:
@@ -500,9 +503,97 @@ class Robot:
             self.bodybatery.setFill("red")
         if self.batery >= 800:
             self.moveobjetive(ponto1)
+            self.bateryactive = 1
             if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY():
                 self.batery=0
-
+    def random(self,numb):
+        self.numbarvores = randrange(0,numb+1)
+        self.numbpedras = numb - self.numbarvores 
+        self.obstgrouparvores = []
+        self.obstgrouppedras = []
+        self.obstgroup = []
+        if self.numbarvores ==0:
+            x = randrange(61, 540)
+            y = randrange(61, 540)
+            first = Point(x,y)
+            self.obstgrouppedras.append(first)
+            self.obstgroup.append(first)
+            for i in range(numb-1):
+                x = randrange(61, 540)
+                y = randrange(61, 540)
+                i = Point(x,y)
+                counter = 1
+                while counter ==1:
+                    x = randrange(61, 540)
+                    y = randrange(61, 540)
+                    i = Point(x,y)
+                    counter = 0 
+                    for a in self.obstgroup:
+                        if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
+                            counter = counter + 1
+                if counter == 0:
+                    self.obstgrouppedras.append(i)
+                    self.obstgroup.append(i)
+        if 0 < self.numbarvores < numb:
+            x = randrange(61, 540)
+            y = randrange(61, 540)
+            first = Point(x,y)
+            self.obstgrouparvores.append(first)
+            self.obstgroup.append(first)
+            for i in range(self.numbarvores - 1):
+                x = randrange(61, 540)
+                y = randrange(61, 540)
+                i = Point(x,y)
+                counter = 1
+                while counter ==1:
+                    x = randrange(61, 540)
+                    y = randrange(61, 540)
+                    i = Point(x,y)
+                    counter = 0 
+                    for a in self.obstgroup:
+                        if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
+                            counter = counter + 1
+                if counter == 0:
+                    self.obstgrouparvores.append(i)
+                    self.obstgroup.append(i)
+            for i in range(self.numbpedras):
+                x = randrange(61, 540)
+                y = randrange(61, 540)
+                i = Point(x,y)
+                counter = 1
+                while counter ==1:
+                    x = randrange(61, 540)
+                    y = randrange(61, 540)
+                    i = Point(x,y)
+                    counter = 0 
+                    for a in self.obstgroup:
+                        if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
+                            counter = counter + 1
+                if counter == 0:
+                    self.obstgrouppedras.append(i)
+                    self.obstgroup.append(i)
+        if self.numbarvores == numb:
+            x = randrange(61, 540)
+            y = randrange(61, 540)
+            first = Point(x,y)
+            self.obstgrouparvores.append(first)
+            self.obstgroup.append(first)
+            for i in range(numb-1):
+                x = randrange(61, 540)
+                y = randrange(61, 540)
+                i = Point(x,y)
+                counter = 1
+                while counter ==1:
+                    x = randrange(61, 540)
+                    y = randrange(61, 540)
+                    i = Point(x,y)
+                    counter = 0 
+                    for a in self.obstgroup:
+                        if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
+                            counter = counter + 1
+                if counter == 0:
+                    self.obstgrouparvores.append(i)
+                    self.obstgroup.append(i)
 
 
 
