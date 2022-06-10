@@ -120,7 +120,50 @@ def implementação2():
                         counter = 0
                 body.mover(body.x,body.y)
 def implementação3():
-    pass
+        win2 = GraphWin("Projeto Ai implementação3", 600, 600)
+        win2.setCoords(0, 0, 600, 600)
+        win2.setBackground("chartreuse3")
+        bateriaponto1 = Point(570,570)
+        bateriaponto2 = Point(600,600)
+        bateria = baterystation(bateriaponto1,bateriaponto2,win2)
+        pontoderecolha1 = Point(0,570)
+        pontoderecolha2 = Point(30,600)
+        pontoderecolha3 = Point(570,300)
+        pontoderecolha4 = Point(600,330)
+        pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win2)
+        counter = 0
+        body = Robot(win2,10,10)
+        macacentro = win2.getMouse()
+        maca = Maça(win2,macacentro)
+        while True:
+            while counter == 0:
+                update(30)
+                body.moveobjetive(maca.centro)
+                body.countbatery(bateria.centro)
+                if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
+                    counter = 1
+                    maca.existnt()
+                
+                body.mover(body.x,body.y)
+            while counter == 1:
+                update(30)
+                distrecolha1 = (pontoderecolha.box1centro.getX()-body.centre.getX())**2 + (pontoderecolha.box1centro.getY()-body.centre.getY())**2
+                distrecolha2 = (pontoderecolha.box2centro.getX()-body.centre.getX())**2 + (pontoderecolha.box2centro.getY()-body.centre.getY())**2
+                if distrecolha1 <= distrecolha2:
+                    body.moveobjetive(pontoderecolha.box1centro)
+                    body.countbatery(bateria.centro) 
+                    if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
+                        macacentro = win2.getMouse()
+                        maca = Maça(win2,macacentro)
+                        counter = 0
+                if distrecolha1 > distrecolha2:
+                    body.moveobjetive(pontoderecolha.box2centro)
+                    body.countbatery(bateria.centro)
+                    if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
+                        macacentro = win2.getMouse()
+                        maca = Maça(win2,macacentro)
+                        counter = 0
+                body.mover(body.x,body.y) 
 def implementação4():
     pass
 def menu():
