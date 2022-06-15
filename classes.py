@@ -505,7 +505,10 @@ class Robot:
             self.moveobjetive(ponto1)
             self.bateryactive = 1
             if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY():
+                for i in range(2):
+                    update(1)
                 self.batery=0
+                
     def random(self,numb):
         self.numbarvores = randrange(0,numb+1)
         print(self.numbarvores)

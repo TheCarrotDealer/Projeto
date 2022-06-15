@@ -32,7 +32,8 @@ def implementação1():
         
         text1.draw(win)
     text1.undraw()
-
+    for i in range(5):
+        update(1)
     maca = Maça(win,macacentro)
     while not quitbutton.clicked(macacentro):
         while counter == 0:
