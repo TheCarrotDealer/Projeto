@@ -33,9 +33,9 @@ def implementação1():
         text1.draw(win)
     text1.undraw()
     maca = Maça(win,macacentro)
-    for i in range(2):
-        update(1)
     while not quitbutton.clicked(macacentro):
+        for i in range(2):
+            update(1)
         while counter == 0:
             update(30)
             body.moveobjetive(maca.centro)
@@ -58,8 +58,6 @@ def implementação1():
                     macacentro = win.getMouse()
                     maca = Maça(win,macacentro)
                     counter = 0
-                    for i in range(2):
-                        update(1)
             if distrecolha1 > distrecolha2:
                 body.moveobjetive(pontoderecolha.box2centro)
                 body.movearvore(arvore.centre,pontoderecolha.box2centro) 
@@ -67,8 +65,6 @@ def implementação1():
                     macacentro = win.getMouse()
                     maca = Maça(win,macacentro)
                     counter = 0
-                    for i in range(2):
-                        update(1)
             body.mover(body.x,body.y)
     win.close()
 
@@ -131,9 +127,9 @@ def implementação2():
             text1.draw(win2)
         text1.undraw()
         maca = Maça(win2,macacentro)
-        for i in range(2):
-            update(1)
         while  not quitbutton.clicked(macacentro):
+            for i in range(2):
+                update(1)
             while counter == 0:
                 update(30)
                 body.moveobjetive(maca.centro)
@@ -172,8 +168,6 @@ def implementação2():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
                         counter = 0
-                        for i in range(2):
-                            update(1)
                 if distrecolha1 > distrecolha2:
                     body.moveobjetive(pontoderecolha.box2centro)
                     body.countbatery(bateria.centro)
@@ -189,8 +183,6 @@ def implementação2():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
                         counter = 0
-                        for i in range(2):
-                            update(1)
                 body.mover(body.x,body.y)
         win2.close()
 def implementação3():
@@ -243,9 +235,9 @@ def implementação3():
             text1.draw(win2)
         text1.undraw()
         maca = Maça(win2,macacentro)
-        for i in range(2):
-            update(1)
         while  not quitbutton.clicked(macacentro):
+            for i in range(2):
+                update(1)
             while counter == 0:
                 update(30)
                 body.moveobjetive(maca.centro)
@@ -282,8 +274,6 @@ def implementação3():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
                         counter = 0
-                        for i in range(2):
-                            update(1)
                 if distrecolha1 > distrecolha2:
                     body.moveobjetive(pontoderecolha.box2centro)
                     body.countbatery(bateria.centro)
@@ -298,8 +288,6 @@ def implementação3():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
                         counter = 0
-                        for i in range(2):
-                            update(1)
                 body.mover(body.x,body.y) 
         win2.close()
 def implementação4():
@@ -353,9 +341,9 @@ def implementação4():
             text1.draw(win2)
         text1.undraw()
         maca = Maça(win2,macacentro)
-        for i in range(2):
-            update(1)
         while  not quitbutton.clicked(macacentro):
+            for i in range(2):
+                update(1)
             while counter == 0:
                 update(30)
                 body.moveobjetive(maca.centro)
@@ -392,8 +380,6 @@ def implementação4():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
                         counter = 0
-                        for i in range(2):
-                            update(1)
                 if distrecolha1 > distrecolha2:
                     body.moveobjetive(pontoderecolha.box2centro)
                     body.countbatery(bateria.centro)
@@ -408,8 +394,6 @@ def implementação4():
                         macacentro = win2.getMouse()
                         maca = Maça(win2,macacentro)
                         counter = 0
-                        for i in range(2):
-                            update(1)
                 body.mover(body.x,body.y) 
         win2.close()
 def menu():
