@@ -2,7 +2,6 @@ from graphics import *
 from classes import *
 
 def implementação1():
-
     win = GraphWin("Projeto Ai implementação1", 600, 600)
     win.setCoords(0, 0, 600, 600)
     win.setBackground("chartreuse3")
@@ -15,9 +14,27 @@ def implementação1():
     pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win)
     counter = 0
     body = Robot(win,10,10)
+    pointquit = Point(570,0)
+    pointquit1 = Point(600,30)
+    quitbutton = butão(win,pointquit,pointquit1,"quit")
+    checkcounter = 1
     macacentro = win.getMouse()
+    text1 = Text(Point(300,450),"coloque noutro lugar")
+    if (macacentro.getX() - arvore.centre.getX())**2 + (macacentro.getY() - arvore.centre.getY())**2 > 40**2:
+        checkcounter = 0 
+    text1.draw(win)
+    while checkcounter > 0:
+        macacentro = win.getMouse()
+        text1.undraw()
+        text1 = Text(Point(300,450),"coloque noutro lugar")
+        if (macacentro.getX() - arvore.centre.getX())**2 + (macacentro.getY() - arvore.centre.getY())**2 > 40**2:
+            checkcounter = 0
+        
+        text1.draw(win)
+    text1.undraw()
+
     maca = Maça(win,macacentro)
-    while True:
+    while not quitbutton.clicked(macacentro):
         while counter == 0:
             update(30)
             body.moveobjetive(maca.centro)
@@ -46,6 +63,7 @@ def implementação1():
                     maca = Maça(win,macacentro)
                     counter = 0
             body.mover(body.x,body.y)
+    win.close()
 
 def implementação2():
         win2 = GraphWin("Projeto Ai implementação2", 600, 600)
@@ -66,6 +84,12 @@ def implementação2():
         arvore2 = Arvore(win2,c,30)
         arvore3 = Arvore(win2,b,30)
         arvore = Arvore(win2,a,30)
+        grouppedras = []
+        grouparvores = []
+        for i in [arvore.centre,arvore2.centre,arvore3.centre]:
+            grouparvores.append(i)
+        for i in [pedra1.obscentro,pedra2.obscentro]:
+            grouppedras.append(i)
         pontoderecolha1 = Point(0,570)
         pontoderecolha2 = Point(30,600)
         pontoderecolha3 = Point(570,300)
@@ -73,9 +97,35 @@ def implementação2():
         pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win2)
         counter = 0
         body = Robot(win2,10,10)
+        pointquit = Point(570,0)
+        pointquit1 = Point(600,30)
+        quitbutton = butão(win2,pointquit,pointquit1,"quit")
+        checkcounter = 0
         macacentro = win2.getMouse()
+        text1 = Text(Point(300,450),"coloque noutro lugar")
+        for i in grouparvores:
+            if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                checkcounter = checkcounter + 1
+        for i in grouppedras:
+            if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                checkcounter = checkcounter + 1
+        text1.draw(win2)
+        while checkcounter > 0:
+            macacentro = win2.getMouse()
+            text1.undraw()
+            text1 = Text(Point(300,450),"coloque noutro lugar")
+            checkcounter = 0
+            for i in grouparvores:
+                if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                    checkcounter = checkcounter + 1
+            for i in grouppedras:
+                if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                    checkcounter = checkcounter + 1
+            text1.draw(win2)
+        text1.undraw()
+
         maca = Maça(win2,macacentro)
-        while True:
+        while  not quitbutton.clicked(macacentro):
             while counter == 0:
                 update(30)
                 body.moveobjetive(maca.centro)
@@ -128,6 +178,7 @@ def implementação2():
                         maca = Maça(win2,macacentro)
                         counter = 0
                 body.mover(body.x,body.y)
+        win2.close()
 def implementação3():
         win2 = GraphWin("Projeto Ai implementação3", 600, 600)
         win2.setCoords(0, 0, 600, 600)
@@ -151,9 +202,34 @@ def implementação3():
             i = Obstaculo(Point(thex,they),Point(the1x,the1y),win2)
         for a in body.obstgrouparvores:
             a = Arvore(win2,a,30)
+        pointquit = Point(570,0)
+        pointquit1 = Point(600,30)
+        quitbutton = butão(win2,pointquit,pointquit1,"quit")
+        checkcounter = 0
         macacentro = win2.getMouse()
+        text1 = Text(Point(300,450),"coloque noutro lugar")
+        for i in body.obstgrouparvores:
+            if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                checkcounter = checkcounter + 1
+        for i in body.obstgrouppedras:
+            if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                checkcounter = checkcounter + 1
+        text1.draw(win2)
+        while checkcounter > 0:
+            macacentro = win2.getMouse()
+            text1.undraw()
+            text1 = Text(Point(300,450),"coloque noutro lugar")
+            checkcounter = 0
+            for i in body.obstgrouparvores:
+                if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                    checkcounter = checkcounter + 1
+            for i in body.obstgrouppedras:
+                if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                    checkcounter = checkcounter + 1
+            text1.draw(win2)
+        text1.undraw()
         maca = Maça(win2,macacentro)
-        while True:
+        while  not quitbutton.clicked(macacentro):
             while counter == 0:
                 update(30)
                 body.moveobjetive(maca.centro)
@@ -203,6 +279,7 @@ def implementação3():
                         maca = Maça(win2,macacentro)
                         counter = 0
                 body.mover(body.x,body.y) 
+        win2.close()
 def implementação4():
         win2 = GraphWin("Projeto Ai implementação4", 600, 600)
         win2.setCoords(0, 0, 600, 600)
@@ -227,9 +304,34 @@ def implementação4():
             i = Obstaculo(Point(thex,they),Point(the1x,the1y),win2)
         for a in body.obstgrouparvores:
             a = Arvore(win2,a,30)
+        pointquit = Point(570,0)
+        pointquit1 = Point(600,30)
+        quitbutton = butão(win2,pointquit,pointquit1,"quit")
+        checkcounter = 0
         macacentro = win2.getMouse()
+        text1 = Text(Point(300,450),"coloque noutro lugar")
+        for i in body.obstgrouparvores:
+            if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                checkcounter = checkcounter + 1
+        for i in body.obstgrouppedras:
+            if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                checkcounter = checkcounter + 1
+        text1.draw(win2)
+        while checkcounter > 0:
+            macacentro = win2.getMouse()
+            text1.undraw()
+            text1 = Text(Point(300,450),"coloque noutro lugar")
+            checkcounter = 0
+            for i in body.obstgrouparvores:
+                if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                    checkcounter = checkcounter + 1
+            for i in body.obstgrouppedras:
+                if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                    checkcounter = checkcounter + 1
+            text1.draw(win2)
+        text1.undraw()
         maca = Maça(win2,macacentro)
-        while True:
+        while  not quitbutton.clicked(macacentro):
             while counter == 0:
                 update(30)
                 body.moveobjetive(maca.centro)
@@ -279,6 +381,7 @@ def implementação4():
                         maca = Maça(win2,macacentro)
                         counter = 0
                 body.mover(body.x,body.y) 
+        win2.close()
 def menu():
     win1 = GraphWin("Projeto Ai Menu", 600, 600)
     win1.setCoords(0, 0, 600, 600)

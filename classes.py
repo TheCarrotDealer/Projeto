@@ -673,6 +673,7 @@ class butão:
     def clicked(self,point):
         self.active = True
         return (self.active and self.leftcorner.getX() < point.getX() < self.rightcorner.getX() and self.leftcorner.getY() < point.getY()< self.rightcorner.getY())
+        
 class baterystation:
     def __init__(self,ponto1,ponto2,win):
         true1x = round(ponto1.getX())
