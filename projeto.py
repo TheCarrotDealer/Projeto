@@ -199,7 +199,7 @@ def implementação3():
         pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win2)
         counter = 0
         body = Robot(win2,10,10)
-        body.random(4)
+        body.random(5)
         for i in body.obstgrouppedras:
             thex = i.getX() -30
             they = i.getY() -30
