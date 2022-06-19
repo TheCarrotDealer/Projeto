@@ -493,21 +493,24 @@ class Robot:
                     self.circA2B2()
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circA2A2()
-    def countbatery(self,ponto1):
+    def countbatery(self,ponto1,on):
         self.bateryactive = 0
         if self.batery >= 0:
             self.bodybatery.setFill("light green")
-        if self.batery >= 300:
-            self.bodybatery.setFill("yellow")
-        if self.batery >= 450:
-            self.bodybatery.setFill("red")
-        if self.batery >= 800:
-            self.moveobjetive(ponto1)
-            self.bateryactive = 1
-            if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY():
-                for i in range(2):
-                    update(1)
-                self.batery=0
+        if on == 1:
+            if self.batery >= 300:
+                self.bodybatery.setFill("yellow")
+            if self.batery >= 450:
+                self.bodybatery.setFill("red")
+            if self.batery >= 800:
+                self.moveobjetive(ponto1)
+                self.bateryactive = 1
+                if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY():
+                    for i in range(2):
+                        update(1)
+                    self.batery=0
+        else:
+            pass
                 
     def random(self,numb):
         self.numbarvores = randrange(0,numb+1)
@@ -599,6 +602,8 @@ class Robot:
                 if counter == 0:
                     self.obstgrouparvores.append(i)
                     self.obstgroup.append(i)
+
+
     def file(self,file):
         self.obstgrouparvores = []
         self.obstgrouppedras = []
@@ -617,6 +622,7 @@ class Robot:
 
             except ValueError:
                 break
+
     def dodgeeverything(self,grouparvores,grouppedras,objective):
         for i in grouparvores:
             self.movearvore(i,objective) 

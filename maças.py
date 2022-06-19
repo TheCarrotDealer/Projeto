@@ -52,9 +52,10 @@ def multiplemaças(win2,grouparvores,grouppedras):
                     maçasgroup.append(maca)
                     maçasgroupcentre.append(maca.centro)
         return quitcounter, maçasgroup, maçasgroupcentre
-def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha):
+def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on):
+        counter = 0
         quitcounter, maçasgroup, maçasgroupcentre = multiplemaças(win2,grouparvores,grouppedras)
-        while  quitcounter == 0:
+        while quitcounter == 0:
             for l in maçasgroupcentre:
                 counter = 0
                 for i in range(2):
@@ -62,7 +63,7 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha):
                 while counter == 0:
                     update(50)
                     body.moveobjetive(l)
-                    body.countbatery(bateria.centro)
+                    body.countbatery(bateria.centro,on)
                     objective = l
                     if body.bateryactive == 1:
                         objective = bateria.centro
@@ -81,7 +82,7 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha):
                 distrecolha2 = (pontoderecolha.box2centro.getX()-body.centre.getX())**2 + (pontoderecolha.box2centro.getY()-body.centre.getY())**2
                 if distrecolha1 <= distrecolha2:
                     body.moveobjetive(pontoderecolha.box1centro)
-                    body.countbatery(bateria.centro)
+                    body.countbatery(bateria.centro,on)
                     objective = pontoderecolha.box1centro
                     if body.bateryactive == 1:
                         objective = bateria.centro
@@ -91,7 +92,7 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha):
                         counter = 0
                 if distrecolha1 > distrecolha2:
                     body.moveobjetive(pontoderecolha.box2centro)
-                    body.countbatery(bateria.centro)
+                    body.countbatery(bateria.centro,on)
                     objective = pontoderecolha.box2centro
                     if body.bateryactive == 1:
                         objective = bateria.centro
@@ -100,3 +101,13 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha):
                         quitcounter, maçasgroup, maçasgroupcentre = multiplemaças(win2,grouparvores,grouppedras)
                         counter = 0
                 body.mover(body.x,body.y)
+def baseline(win2):
+    bateriaponto1 = Point(570,570)
+    bateriaponto2 = Point(600,600)
+    bateria = baterystation(bateriaponto1,bateriaponto2,win2)
+    pontoderecolha1 = Point(0,570)
+    pontoderecolha2 = Point(30,600)
+    pontoderecolha3 = Point(570,300)
+    pontoderecolha4 = Point(600,330)
+    pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win2)
+    return bateria, pontoderecolha
