@@ -1,5 +1,6 @@
 from graphics import * 
 from classes import *
+from outrasclasses import *
 def multiplemaças(win2,grouparvores,grouppedras):
         pointstart = Point(540,0)
         pointstart1 = Point(570,30)
@@ -102,6 +103,8 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on):
                         counter = 0
                 body.mover(body.x,body.y)
 def baseline(win2):
+    backround = Image(Point(300,300),"backround.png")
+    backround.draw(win2)
     bateriaponto1 = Point(570,570)
     bateriaponto2 = Point(600,600)
     bateria = baterystation(bateriaponto1,bateriaponto2,win2)

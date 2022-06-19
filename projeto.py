@@ -1,5 +1,6 @@
 from graphics import * 
 from classes import *
+from outrasclasses import *
 from implementação1 import *
 from implementação2 import *
 from implementação3 import *
