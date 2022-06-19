@@ -1,10 +1,10 @@
 from graphics import * 
 from classes import *
 from outrasclasses import *
-from implementação1 import *
-from implementação2 import *
-from implementação3 import *
-from implementação4 import *
+from implementacao1 import *
+from implementacao2 import *
+from implementacao3 import *
+from implementacao4 import *
 def menu():
     win1 = GraphWin("Projeto Ai Menu", 600, 600)
     win1.setCoords(0, 0, 600, 600)

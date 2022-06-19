@@ -605,6 +605,7 @@ class Robot:
 
     def file(self,file):
         self.obstgrouparvores = []
+        self.obstgrouparbustos = []
         self.obstgrouppedras = []
         for i in file.readlines():
             i = str(i)
@@ -618,6 +619,8 @@ class Robot:
                     self.obstgrouppedras.append(ponto)
                 if ob == 2:
                     self.obstgrouparvores.append(ponto)
+                if ob == 3:
+                    self.obstgrouparbustos.append(ponto)
 
             except ValueError:
                 break

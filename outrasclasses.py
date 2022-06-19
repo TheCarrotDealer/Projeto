@@ -29,13 +29,16 @@ class Recolha:
         self.box1.draw(win)
         self.box2.draw(win)
 class Obstaculo:
-    def __init__(self,ponto1,ponto2,win):
+    def __init__(self,ponto1,ponto2,win,type):
         true1x = round(ponto1.getX())
         true1y = round(ponto1.getY())
         true2x = round(ponto2.getX())
         true2y = round(ponto2.getY())
         self.obscentro = Point((true1x + true2x)/2,(true1y + true2y)/2)
-        self.obs = Image(self.obscentro,"rock.png")
+        if type == 1:
+            self.obs = Image(self.obscentro,"rock.png")
+        else:
+            self.obs = Image(self.obscentro,"bush.png")
         self.obs.draw(win)
 class Arvore:
     def __init__(self, win, ponto1, raio):

@@ -1,6 +1,6 @@
 from graphics import * 
 from classes import *
-from maças import *
+from macas import *
 from outrasclasses import *
 def implementação1():
     win = GraphWin("Projeto Ai implementação1", 600, 600)

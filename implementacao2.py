@@ -1,6 +1,6 @@
 from graphics import * 
 from classes import *
-from maças import *
+from macas import *
 from outrasclasses import *
 def implementação2():
         win2 = GraphWin("Projeto Ai implementação2", 600, 600)
@@ -17,8 +17,8 @@ def implementação2():
         pontopedra12 = Point(180,480)
         pontopedra22 = Point(480,180)
 
-        pedra1 = Obstaculo(pontopedra1,pontopedra12,win2)
-        pedra2 = Obstaculo(pontopedra2,pontopedra22,win2)
+        pedra1 = Obstaculo(pontopedra1,pontopedra12,win2,1)
+        pedra2 = Obstaculo(pontopedra2,pontopedra22,win2,0)
         arvore2 = Arvore(win2,c,30)
         arvore3 = Arvore(win2,b,30)
         arvore = Arvore(win2,a,30)
