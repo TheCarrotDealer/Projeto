@@ -1,6 +1,5 @@
 from graphics import * 
 from classes import *
-
 def implementação1():
     win = GraphWin("Projeto Ai implementação1", 600, 600)
     win.setCoords(0, 0, 600, 600)
@@ -19,12 +18,16 @@ def implementação1():
     pointquit = Point(570,0)
     pointquit1 = Point(600,30)
     quitbutton = butão(win,pointquit,pointquit1,"quit")
-    checkcounter = 1
+    quitcounter = 0
     maçasgroup = []
     maçasgroupcentre = []
+    text2 = Text(Point(300,450),"clique no ecrã")
+    text2.draw(win)
     macacentro = win.getMouse()
+    text2.undraw()
     macacount = 0
     while macacount == 0:
+        checkcounter = 1
         macacentro = win.getMouse()
         text1 = Text(Point(300,450),"coloque noutro lugar")
         if (macacentro.getX() - arvore.centre.getX())**2 + (macacentro.getY() - arvore.centre.getY())**2 > 40**2:
@@ -36,7 +39,6 @@ def implementação1():
             text1 = Text(Point(300,450),"coloque noutro lugar")
             if (macacentro.getX() - arvore.centre.getX())**2 + (macacentro.getY() - arvore.centre.getY())**2 > 40**2:
                 checkcounter = 0
-            
             text1.draw(win)
         text1.undraw()
         if startbutton.clicked(macacentro):
@@ -44,13 +46,16 @@ def implementação1():
                 macacount = 1
             if maçasgroupcentre == []:
                 pass
-
+        elif quitbutton.clicked(macacentro):
+            quitcounter = 1
+            macacount = 1
         else: 
             maca = Maça(win,macacentro)
             maçasgroup.append(maca)
             maçasgroupcentre.append(maca.centro)
-    while not quitbutton.clicked(macacentro):
-        print("homens")
+    while quitcounter == 0:
+        for i in range(2):
+            update(1)
         for l in maçasgroupcentre:
             counter = 0
             while counter == 0:
@@ -62,9 +67,9 @@ def implementação1():
                     for p in maçasgroup:
                         if body.centre.getY() == p.centro.getY() and body.centre.getX() == p.centro.getX():
                             p.existnt()
-                    
-                
                 body.mover(body.x,body.y)
+            for i in range(2):
+                update(1)
         while counter == 1:
             update(30)
             distrecolha1 = (pontoderecolha.box1centro.getX()-body.centre.getX())**2 + (pontoderecolha.box1centro.getY()-body.centre.getY())**2
@@ -73,11 +78,15 @@ def implementação1():
                 body.moveobjetive(pontoderecolha.box1centro)
                 body.movearvore(arvore.centre,pontoderecolha.box1centro) 
                 if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
+                    text2 = Text(Point(300,450),"clique no ecrã")
+                    text2.draw(win)
                     macacentro = win.getMouse()
+                    text2.undraw
                     macacount = 0
                     maçasgroup = []
                     maçasgroupcentre = []
                     while macacount == 0:
+                        checkcounter = 1
                         macacentro = win.getMouse()
                         text1 = Text(Point(300,450),"coloque noutro lugar")
                         if (macacentro.getX() - arvore.centre.getX())**2 + (macacentro.getY() - arvore.centre.getY())**2 > 40**2:
@@ -97,20 +106,29 @@ def implementação1():
                                 macacount = 1
                             if maçasgroupcentre == []:
                                 pass
+                        elif quitbutton.clicked(macacentro):
+                            quitcounter = 1
+                            macacount = 1
                         else: 
                             maca = Maça(win,macacentro)
                             maçasgroup.append(maca)
                             maçasgroupcentre.append(maca.centro)
                     counter = 0
+                    for i in range(2):
+                        update(1)
             if distrecolha1 > distrecolha2:
                 body.moveobjetive(pontoderecolha.box2centro)
                 body.movearvore(arvore.centre,pontoderecolha.box2centro) 
                 if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
+                    text2 = Text(Point(300,450),"clique no ecrã")
+                    text2.draw(win)
                     macacentro = win.getMouse()
+                    text2.undraw
                     macacount = 0
                     maçasgroup = []
                     maçasgroupcentre = []
                     while macacount == 0:
+                        checkcounter = 1
                         macacentro = win.getMouse()
                         text1 = Text(Point(300,450),"coloque noutro lugar")
                         if (macacentro.getX() - arvore.centre.getX())**2 + (macacentro.getY() - arvore.centre.getY())**2 > 40**2:
@@ -122,7 +140,6 @@ def implementação1():
                             text1 = Text(Point(300,450),"coloque noutro lugar")
                             if (macacentro.getX() - arvore.centre.getX())**2 + (macacentro.getY() - arvore.centre.getY())**2 > 40**2:
                                 checkcounter = 0
-                            
                             text1.draw(win)
                         text1.undraw()
                         if startbutton.clicked(macacentro):
@@ -130,6 +147,9 @@ def implementação1():
                                 macacount = 1
                             if maçasgroupcentre == []:
                                 pass
+                        elif quitbutton.clicked(macacentro):
+                            quitcounter = 1
+                            macacount = 1
                         else: 
                             maca = Maça(win,macacentro)
                             maçasgroup.append(maca)
@@ -137,7 +157,6 @@ def implementação1():
                     counter = 0
             body.mover(body.x,body.y)
     win.close()
-
 def implementação2():
         win2 = GraphWin("Projeto Ai implementação2", 600, 600)
         win2.setCoords(0, 0, 600, 600)
@@ -151,13 +170,15 @@ def implementação2():
         pontopedra22 = Point(480,180)
         bateriaponto1 = Point(570,570)
         bateriaponto2 = Point(600,600)
+        pointstart = Point(540,0)
+        pointstart1 = Point(570,30)
+        startbutton = butão(win2,pointstart,pointstart1,"start")
         bateria = baterystation(bateriaponto1,bateriaponto2,win2)
         pedra1 = Obstaculo(pontopedra1,pontopedra12,win2)
         pedra2 = Obstaculo(pontopedra2,pontopedra22,win2)
         arvore2 = Arvore(win2,c,30)
         arvore3 = Arvore(win2,b,30)
         arvore = Arvore(win2,a,30)
-        
         grouppedras = []
         grouparvores = []
         for i in [arvore.centre,arvore2.centre,arvore3.centre]:
@@ -174,53 +195,76 @@ def implementação2():
         pointquit = Point(570,0)
         pointquit1 = Point(600,30)
         quitbutton = butão(win2,pointquit,pointquit1,"quit")
-        checkcounter = 0
+        quitcounter = 0
+        maçasgroup = []
+        maçasgroupcentre = []
+        text2 = Text(Point(300,450),"clique no ecrã")
+        text2.draw(win2)
         macacentro = win2.getMouse()
-        text1 = Text(Point(300,450),"coloque noutro lugar")
-        for i in grouparvores:
-            if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
-                checkcounter = checkcounter + 1
-        for i in grouppedras:
-            if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
-                checkcounter = checkcounter + 1
-        text1.draw(win2)
-        while checkcounter > 0:
-            macacentro = win2.getMouse()
-            text1.undraw()
-            text1 = Text(Point(300,450),"coloque noutro lugar")
-            checkcounter = 0
-            for i in grouparvores:
-                if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
-                    checkcounter = checkcounter + 1
-            for i in grouppedras:
-                if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
-                    checkcounter = checkcounter + 1
-            text1.draw(win2)
-        text1.undraw()
-        maca = Maça(win2,macacentro)
-
-        while  not quitbutton.clicked(macacentro):
-            for i in range(2):
-                update(1)
-            while counter == 0:
-                update(30)
-                body.moveobjetive(maca.centro)
-                body.countbatery(bateria.centro)
-                objective = maca.centro
-                if body.bateryactive == 1:
-                    objective = bateria.centro
-                body.movearvore(arvore.centre,objective)    
-                body.movearvore(arvore2.centre,objective)   
-                body.movearvore(arvore3.centre,objective)  
-                body.movimentoobst(pedra1.obscentro,objective) 
-                body.movimentoobst(pedra2.obscentro,objective)
-                if body.centre.getY() == maca.centro.getY() and body.centre.getX() == maca.centro.getX():
-                    counter = 1
-                    maca.existnt()
-                    for i in range(2):
-                        update(1)
-                
-                body.mover(body.x,body.y)
+        text2.undraw()
+        macacount = 0
+        while macacount == 0:
+                checkcounter = 0
+                macacentro = win2.getMouse()
+                text1 = Text(Point(300,450),"coloque noutro lugar")
+                for i in grouparvores:
+                    if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                        checkcounter = checkcounter + 1
+                for i in grouppedras:
+                    if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                        checkcounter = checkcounter + 1
+                text1.draw(win2)
+                while checkcounter > 0:
+                    macacentro = win2.getMouse()
+                    text1.undraw()
+                    text1 = Text(Point(300,450),"coloque noutro lugar")
+                    checkcounter = 0
+                    for i in grouparvores:
+                        if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                            checkcounter = checkcounter + 1
+                    for i in grouppedras:
+                        if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                            checkcounter = checkcounter + 1
+                    text1.draw(win2)
+                text1.undraw()
+                if startbutton.clicked(macacentro):
+                    if maçasgroupcentre != []:
+                        macacount = 1
+                    if maçasgroupcentre == []:
+                        pass
+                elif quitbutton.clicked(macacentro):
+                    quitcounter = 1
+                    macacount = 1
+                else: 
+                    maca = Maça(win2,macacentro)
+                    maçasgroup.append(maca)
+                    maçasgroupcentre.append(maca.centro)
+        while  quitcounter == 0:
+            for l in maçasgroupcentre:
+                counter = 0
+                for i in range(2):
+                    update(1)
+                while counter == 0:
+                    update(30)
+                    body.moveobjetive(l)
+                    body.countbatery(bateria.centro)
+                    objective = l
+                    if body.bateryactive == 1:
+                        objective = bateria.centro
+                    body.movearvore(arvore.centre,objective)    
+                    body.movearvore(arvore2.centre,objective)   
+                    body.movearvore(arvore3.centre,objective)  
+                    body.movimentoobst(pedra1.obscentro,objective) 
+                    body.movimentoobst(pedra2.obscentro,objective)
+                    if body.centre.getY() == l.getY() and body.centre.getX() == l.getX():
+                        counter = 1
+                        for p in maçasgroup:
+                            if body.centre.getY() == p.centro.getY() and body.centre.getX() == p.centro.getX():
+                                p.existnt()
+                        for i in range(2):
+                            update(1)
+                    
+                    body.mover(body.x,body.y)
             while counter == 1:
                 update(30)
                 distrecolha1 = (pontoderecolha.box1centro.getX()-body.centre.getX())**2 + (pontoderecolha.box1centro.getY()-body.centre.getY())**2
@@ -237,9 +281,52 @@ def implementação2():
                     body.movimentoobst(pedra1.obscentro,objective) 
                     body.movimentoobst(pedra2.obscentro,objective) 
                     if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
-                        macacentro = win2.getMouse()
-                        maca = Maça(win2,macacentro)
-                        counter = 0
+                            maçasgroup = []
+                            maçasgroupcentre = []
+                            text2 = Text(Point(300,450),"clique no ecrã")
+                            text2.draw(win2)
+                            macacentro = win2.getMouse()
+                            text2.undraw()
+                            macacount = 0
+                            while macacount == 0:
+                                macacentro = win2.getMouse()
+                                checkcounter = 0
+                                text1 = Text(Point(300,450),"coloque noutro lugar")
+                                for i in grouparvores:
+                                    if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                                        checkcounter = checkcounter + 1
+                                for i in grouppedras:
+                                    if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                                        checkcounter = checkcounter + 1
+                                text1.draw(win2)
+                                while checkcounter > 0:
+                                    checkcounter = 0
+                                    macacentro = win2.getMouse()
+                                    text1.undraw()
+                                    text1 = Text(Point(300,450),"coloque noutro lugar")
+                                    checkcounter = 0
+                                    for i in grouparvores:
+                                        if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                                            checkcounter = checkcounter + 1
+                                    for i in grouppedras:
+                                        if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                                            checkcounter = checkcounter + 1
+                                    text1.draw(win2)
+                                text1.undraw()
+                                if startbutton.clicked(macacentro):
+                                    if maçasgroupcentre != []:
+                                        macacount = 1
+                                    if maçasgroupcentre == []:
+                                        pass
+                                elif quitbutton.clicked(macacentro):
+                                    quitcounter = 1
+                                    macacount = 1
+
+                                else: 
+                                    maca = Maça(win2,macacentro)
+                                    maçasgroup.append(maca)
+                                    maçasgroupcentre.append(maca.centro)
+                                counter = 0
                 if distrecolha1 > distrecolha2:
                     body.moveobjetive(pontoderecolha.box2centro)
                     body.countbatery(bateria.centro)
@@ -252,8 +339,51 @@ def implementação2():
                     body.movimentoobst(pedra1.obscentro,objective) 
                     body.movimentoobst(pedra2.obscentro,objective)  
                     if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
+                        maçasgroup = []
+                        maçasgroupcentre = []
+                        text2 = Text(Point(300,450),"clique no ecrã")
+                        text2.draw(win2)
                         macacentro = win2.getMouse()
-                        maca = Maça(win2,macacentro)
+                        text2.undraw()
+                        macacount = 0
+                        while macacount == 0:
+                            macacentro = win2.getMouse()
+                            checkcounter = 0
+                            text1 = Text(Point(300,450),"coloque noutro lugar")
+                            for i in grouparvores:
+                                if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                                    checkcounter = checkcounter + 1
+                            for i in grouppedras:
+                                if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                                    checkcounter = checkcounter + 1
+                            text1.draw(win2)
+                            while checkcounter > 0:
+                                checkcounter = 0
+                                macacentro = win2.getMouse()
+                                text1.undraw()
+                                text1 = Text(Point(300,450),"coloque noutro lugar")
+                                checkcounter = 0
+                                for i in grouparvores:
+                                    if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                                        checkcounter = checkcounter + 1
+                                for i in grouppedras:
+                                    if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                                        checkcounter = checkcounter + 1
+                                text1.draw(win2)
+                            text1.undraw()
+                            if startbutton.clicked(macacentro):
+                                if maçasgroupcentre != []:
+                                    macacount = 1
+                                if maçasgroupcentre == []:
+                                    pass
+                            elif quitbutton.clicked(macacentro):
+                                quitcounter = 1
+                                macacount = 1
+
+                            else: 
+                                maca = Maça(win2,macacentro)
+                                maçasgroup.append(maca)
+                                maçasgroupcentre.append(maca.centro)
                         counter = 0
                 body.mover(body.x,body.y)
         win2.close()
@@ -269,6 +399,9 @@ def implementação3():
         pontoderecolha3 = Point(570,300)
         pontoderecolha4 = Point(600,330)
         pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win2)
+        pointstart = Point(540,0)
+        pointstart1 = Point(570,30)
+        startbutton = butão(win2,pointstart,pointstart1,"start")
         counter = 0
         body = Robot(win2,10,10)
         body.random(5)
@@ -283,8 +416,14 @@ def implementação3():
         pointquit = Point(570,0)
         pointquit1 = Point(600,30)
         quitbutton = butão(win2,pointquit,pointquit1,"quit")
-        checkcounter = 0
+        maçasgroup = []
+        maçasgroupcentre = []
+        text2 = Text(Point(300,450),"clique no ecrã")
+        text2.draw(win2)
         macacentro = win2.getMouse()
+        text2.undraw()
+        macacount = 0
+        checkcounter = 0
         text1 = Text(Point(300,450),"coloque noutro lugar")
         for i in body.obstgrouparvores:
             if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
@@ -294,6 +433,7 @@ def implementação3():
                 checkcounter = checkcounter + 1
         text1.draw(win2)
         while checkcounter > 0:
+            checkcounter = 0
             macacentro = win2.getMouse()
             text1.undraw()
             text1 = Text(Point(300,450),"coloque noutro lugar")
@@ -374,6 +514,9 @@ def implementação4():
         pontoderecolha3 = Point(570,300)
         pontoderecolha4 = Point(600,330)
         pontoderecolha = Recolha(pontoderecolha1,pontoderecolha2,pontoderecolha3,pontoderecolha4,win2)
+        pointstart = Point(540,0)
+        pointstart1 = Point(570,30)
+        startbutton = butão(win2,pointstart,pointstart1,"start")
         counter = 0
         body = Robot(win2,10,10)
         file = open("fileprojeto.txt","r")
@@ -390,7 +533,13 @@ def implementação4():
         pointquit1 = Point(600,30)
         quitbutton = butão(win2,pointquit,pointquit1,"quit")
         checkcounter = 0
+        maçasgroup = []
+        maçasgroupcentre = []
+        text2 = Text(Point(300,450),"clique no ecrã")
+        text2.draw(win2)
         macacentro = win2.getMouse()
+        text2.undraw()
+        macacount = 0
         text1 = Text(Point(300,450),"coloque noutro lugar")
         for i in body.obstgrouparvores:
             if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
@@ -494,4 +643,3 @@ def menu():
         if implementacao4.clicked(click):
             implementação4()
 menu()
-#somrthing
