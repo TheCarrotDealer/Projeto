@@ -1,7 +1,6 @@
 from graphics import * 
 from classes import *
 from maças import *
-
 def implementação4():
         win2 = GraphWin("Projeto Ai implementação4", 600, 600)
         win2.setCoords(0, 0, 600, 600)

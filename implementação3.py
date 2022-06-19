@@ -18,8 +18,6 @@ def implementação3():
             a = Arvore(win2,a,30)
         grouparvores = body.obstgrouparvores 
         grouppedras = body.obstgrouppedras
-        
         on = 1
-
         moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on)
         win2.close()

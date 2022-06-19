@@ -25,8 +25,6 @@ def implementação2():
         for i in [pedra1.obscentro,pedra2.obscentro]:
             grouppedras.append(i)
         body = Robot(win2,10,10)
-
         on = 1
-
         moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on)
         win2.close()
