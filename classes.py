@@ -39,17 +39,17 @@ class Robot:
         true2x = true2x - 40
         a = (true1x - true2x)
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(-1,0)
     def A1C3(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
         if self.distcantoinfesqqmaca < self.distcantosupdirmaca:
             for i in range(80):
-                update(30)
+                update(50)
                 self.mover(-1,0)
         if self.distcantoinfesqqmaca >= self.distcantosupdirmaca:
             for i in range(80):
-                update(30)
+                update(50)
                 self.mover(0,1)
     def A1B3(self,ponto2):
         true1x = round(self.centre.getY())
@@ -57,18 +57,18 @@ class Robot:
         true2x = true2x + 40
         a = (true2x - true1x)
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(0,1)
     def A2B1(self,ponto1):
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         a = (true2x - true1x) + 40
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(0,1)
     def A2C1(self):
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(0,1)
     def A2C2(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
@@ -78,50 +78,50 @@ class Robot:
             true2x = true2x - 40
             a = (true1x - true2x)
             for i in range(a):
-                update(30)
+                update(50)
                 self.mover(-1,0)
         if  self.distcantosupesqmaca >= self.distcantosupdirmaca:
             a= true2x - true1x + 40
             for i in range(a):
-                update(30)
+                update(50)
                 self.mover(1,0)
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(0,1)
     def A2C3(self):
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(0,1)
     def A2B3(self,ponto1):
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         a = (true2x - true1x) + 40
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(0,1)
     def A3B1(self,ponto1):
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         a = (true2x - true1x) + 40
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(0,1)
     def A3C1(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
         if self.distcantosupesqmaca < self.distcantoinfdirmaca:
             for i in range(80):
-                update(30)
+                update(50)
                 self.mover(0,1)
         if self.distcantosupesqmaca >= self.distcantoinfdirmaca:
             for i in range(80):
-                update(30)
+                update(50)
                 self.mover(1,0)
     def A3C2(self,ponto1):
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         a= true2x - true1x + 40
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(1,0)
     def B1A2(self,ponto1):
         true1x = round(self.centre.getX())
@@ -129,11 +129,11 @@ class Robot:
         true2x = true2x - 40
         a = (true1x - true2x)
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(-1,0)
     def B1A3(self):
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(-1,0)
     def B1B3(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
@@ -143,20 +143,20 @@ class Robot:
             true2x = true2x + 40
             a = (true2x - true1x)
             for i in range(a):
-                update(30)
+                update(50)
                 self.mover(0,1)
         if  self.distcantosupesqmaca >= self.distcantoinfesqqmaca:
             true2x = true2x - 40
             a= true1x - true2x
             for i in range(a):
-                update(30)
+                update(50)
                 self.mover(0,-1)
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(-1,0)
     def B1C3(self):
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(-1,0)
     def B1C2(self,ponto1):
         true1x = round(self.centre.getX())
@@ -164,18 +164,18 @@ class Robot:
         true2x = true2x - 40
         a = (true1x - true2x)
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(-1,0)
     def B3A2(self,ponto1):
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         a= true2x - true1x + 40
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(1,0)
     def B3A1(self):
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(1,0)
     def B3B1(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
@@ -185,27 +185,27 @@ class Robot:
             true2x = true2x + 40
             a = (true2x - true1x)
             for i in range(a):
-                update(30)
+                update(50)
                 self.mover(0,1)
         if  self.distcantosupdirmaca >= self.distcantoinfdirmaca:
             true2x = true2x - 40
             a= true1x - true2x
             for i in range(a):
-                update(30)
+                update(50)
                 self.mover(0,-1)
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(1,0)
     def B3C1(self):
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(1,0)
     def B3C2(self,ponto1):
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         a= true2x - true1x + 40
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(1,0)
     def C1A2(self,ponto1):
         true1x = round(self.centre.getX())
@@ -213,17 +213,17 @@ class Robot:
         true2x = true2x - 40
         a = (true1x - true2x)
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(-1,0)
     def C1A3(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
         if self.distcantosupesqmaca < self.distcantoinfdirmaca:
             for i in range(80):
-                update(30)
+                update(50)
                 self.mover(-1,0)
         if self.distcantosupesqmaca >= self.distcantoinfdirmaca:
             for i in range(80):
-                update(30)
+                update(50)
                 self.mover(0,-1)
     def C1B3(self,ponto1):
         true1x = round(self.centre.getY())
@@ -231,7 +231,7 @@ class Robot:
         true2x = true2x - 40
         a= true1x - true2x
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(0,-1)
     def C2B1(self,ponto1):
         true1x = round(self.centre.getY())
@@ -239,11 +239,11 @@ class Robot:
         true2x = true2x - 40
         a= true1x - true2x
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(0,-1)
     def C2A1(self):
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(0,-1)
     def C2A2(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
@@ -253,19 +253,19 @@ class Robot:
             true2x = true2x - 40
             a = (true1x - true2x)
             for i in range(a):
-                update(30)
+                update(50)
                 self.mover(-1,0)
         if  self.distcantoinfesqqmaca >= self.distcantoinfdirmaca:
             a= true2x - true1x + 40
             for i in range(a):
-                update(30)
+                update(50)
                 self.mover(1,0)
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(0,-1)
     def C2A3(self):
         for i in range(80):
-            update(30)
+            update(50)
             self.mover(0,-1)
     def C2B3(self,ponto1):
         true1x = round(self.centre.getY())
@@ -273,7 +273,7 @@ class Robot:
         true2x = true2x - 40
         a= true1x - true2x
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(0,-1)
     def C3B1(self,ponto1):
         true1x = round(self.centre.getY())
@@ -281,24 +281,24 @@ class Robot:
         true2x = true2x - 40
         a= true1x - true2x
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(0,-1)
     def C3A1(self,ponto1,ponto2):
         self.distancias(ponto1,ponto2)
         if self.distcantoinfesqqmaca < self.distcantosupdirmaca:
             for i in range(80):
-                update(30)
+                update(50)
                 self.mover(0,-1)
         if self.distcantoinfesqqmaca >= self.distcantosupdirmaca:
             for i in range(80):
-                update(30)
+                update(50)
                 self.mover(1,0) 
     def C3A2(self,ponto1):
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         a= true2x - true1x + 40
         for i in range(a):
-            update(30)
+            update(50)
             self.mover(1,0)
     def movimentoobst(self,ponto1,ponto2):
         if self.centre.getX() > (ponto1.getX()-40) and self.centre.getY() > (ponto1.getY()-40) and self.centre.getX() < (ponto1.getX()+40) and self.centre.getY() < (ponto1.getY()+40) :
@@ -617,6 +617,11 @@ class Robot:
 
             except ValueError:
                 break
+    def dodgeeverything(self,grouparvores,grouppedras,objective):
+        for i in grouparvores:
+            self.movearvore(i,objective) 
+        for i in grouppedras:
+            self.movimentoobst(i,objective) 
 class Maça:
     def __init__(self,win,ponto):
         poentox = round(ponto.getX())
@@ -651,9 +656,8 @@ class Obstaculo:
         true1y = round(ponto1.getY())
         true2x = round(ponto2.getX())
         true2y = round(ponto2.getY())
-        self.obs = Rectangle(Point(true1x,true1y),Point(true2x,true2y))
         self.obscentro = Point((true1x + true2x)/2,(true1y + true2y)/2)
-        self.obs.setFill("azure4")
+        self.obs = Image(self.obscentro,"Screenshot_1697.png")
         self.obs.draw(win)
 class Arvore:
     def __init__(self, win, ponto1, raio):
