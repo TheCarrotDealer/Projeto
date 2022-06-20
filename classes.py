@@ -615,30 +615,28 @@ class Robot:
                 x , y , ob = i.split(" ")
                 x = int(x)
                 y = int(y)
-                if self.obstaculos == []:
-                    self.obstaculos.append(Point(x,y))
-                else:
-                    counter = 0
-                    for l in self.obstaculos:
-                        if sqrt((x - l.getX())**2 + (y - l.getY())**2) < 120:
-                            counter = counter + 1 
-                    if counter == 0:
-                        self.obstaculos.append(Point(x,y))
+                counter = 0
+                for l in self.obstaculos:
+                    if sqrt((x - l.getX())**2 + (y - l.getY())**2) < 120:
+                        counter = counter + 1 
+                        print("Obstáculo demasiado perto de outros objetos")
+                    if x<= 21 or 530 < x or y<= 21 or 530 < y:
+                        counter = counter + 1 
+                        print("Obstáculo demasiado perto das bordas onde se localizam objetivos")
+                self.obstaculos.append(Point(x,y))
+                if counter == 0:
+                    ob = int(ob)
+                    if ob == 1:
+                        self.obstgrouppedras.append(Point(x,y))
+                    elif ob == 2:
+                        self.obstgrouparvores.append(Point(x,y))
+                    elif ob == 3:
+                        self.obstgrouparbustos.append(Point(x,y))
                     else:
-                        print("obstáculo demasiado perto do obsjetivo")
-                        
-
-
-                ob = int(ob)
-                ponto = Point(x,y)
-                if ob == 1:
-                    self.obstgrouppedras.append(ponto)
-                elif ob == 2:
-                    self.obstgrouparvores.append(ponto)
-                elif ob == 3:
-                    self.obstgrouparbustos.append(ponto)
+                        print("Tipo de obstáculo inválido")
                 else:
-                    print("tipo de obstáculo inválido")
+                    print("Obstáculo inválido")
+                        
 
             except ValueError:
                 break
