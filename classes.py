@@ -498,11 +498,11 @@ class Robot:
         if self.batery >= 0:
             self.bodybatery.setFill("light green")
         if on == 1:
-            if self.batery >= 300:
+            if self.batery >= 1500:
                 self.bodybatery.setFill("yellow")
-            if self.batery >= 450:
+            if self.batery >= 3000:
                 self.bodybatery.setFill("red")
-            if self.batery >= 800:
+            if self.batery >= 4800:
                 self.moveobjetive(ponto1)
                 self.bateryactive = 1
                 if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY():
@@ -607,20 +607,38 @@ class Robot:
         self.obstgrouparvores = []
         self.obstgrouparbustos = []
         self.obstgrouppedras = []
+        self.obstaculos = []
+        counter = 0
         for i in file.readlines():
             i = str(i)
             try:
                 x , y , ob = i.split(" ")
                 x = int(x)
                 y = int(y)
+                if self.obstaculos == []:
+                    self.obstaculos.append(Point(x,y))
+                else:
+                    counter = 0
+                    for l in self.obstaculos:
+                        if sqrt((x - l.getX())**2 + (y - l.getY())**2) < 120:
+                            counter = counter + 1 
+                    if counter == 0:
+                        self.obstaculos.append(Point(x,y))
+                    else:
+                        print("obstáculo demasiado perto do obsjetivo")
+                        
+
+
                 ob = int(ob)
                 ponto = Point(x,y)
                 if ob == 1:
                     self.obstgrouppedras.append(ponto)
-                if ob == 2:
+                elif ob == 2:
                     self.obstgrouparvores.append(ponto)
-                if ob == 3:
+                elif ob == 3:
                     self.obstgrouparbustos.append(ponto)
+                else:
+                    print("tipo de obstáculo inválido")
 
             except ValueError:
                 break

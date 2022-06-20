@@ -21,8 +21,8 @@ class Recolha:
         true4y = round(ponto4.getY())
         self.box1centro = Point((true1x + true2x)/2,(true1y + true2y)/2)
         self.box2centro = Point((true3x + true4x)/2,(true3y + true4y)/2)
-        self.box1 = Image(self.box1centro,"buraco.png")
-        self.box2 = Image(self.box2centro,"buraco.png")
+        self.box1 = Image(self.box1centro,"buraco2.png")
+        self.box2 = Image(self.box2centro,"buraco2.png")
         self.box1.draw(win)
         self.box2.draw(win)
 class Obstaculo:
@@ -38,7 +38,7 @@ class Obstaculo:
             self.obs = Image(self.obscentro,"bush.png")
         self.obs.draw(win)
 class Arvore:
-    def __init__(self, win, ponto1, raio):
+    def __init__(self, win, ponto1,size):
         self.centre = ponto1
         self.arvore = Image(self.centre,"arvore.png")
         self.arvore.draw(win)
