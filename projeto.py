@@ -16,6 +16,9 @@ def menu():
     point6 = Point(520,70)
     point7 = Point( 230,130)
     point8 = Point(370,170)
+    point9 = Point(250,500)
+    point10 = Point(350,550)
+    quitbutton = butão(win1,point9,point10,"quit")
     implementacao1 = butão(win1,point1,point2,"implementação 1")
     implementacao2 = butão(win1,point3,point4,"implementação 2")
     implementacao3 = butão(win1,point5,point6,"implementação 3")
@@ -23,11 +26,22 @@ def menu():
     while True:
         click = win1.getMouse()
         if implementacao1.clicked(click):
+            win1.close()
             implementação1()
+            menu()
         if implementacao2.clicked(click):
+            win1.close()
             implementação2()
+            menu()
         if implementacao3.clicked(click):
+            win1.close()
             implementação3()
+            menu()
         if implementacao4.clicked(click):
+            win1.close()
             implementação4()
+            menu()
+        if quitbutton.clicked(click):
+            win1.close()
+            break
 menu()

@@ -5,6 +5,7 @@ from outrasclasses import *
 def implementação1():
     win = GraphWin("Projeto Ai implementação1", 600, 600)
     win.setCoords(0, 0, 600, 600)
+    
     bateria, pontoderecolha = baseline(win)
 
     a = Point (300, 300)

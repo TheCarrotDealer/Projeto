@@ -4,8 +4,7 @@ class Maça:
     def __init__(self,win,ponto):
         poentox = round(ponto.getX())
         poentoy = round(ponto.getY())
-        self.corpo = Circle(ponto,10)
-        self.corpo.setFill("red")
+        self.corpo = Image(Point(poentox,poentoy),"basketapples.png")
         self.corpo.draw(win)
         self.centro = Point(poentox,poentoy)
     def existnt(self):
@@ -22,10 +21,8 @@ class Recolha:
         true4y = round(ponto4.getY())
         self.box1centro = Point((true1x + true2x)/2,(true1y + true2y)/2)
         self.box2centro = Point((true3x + true4x)/2,(true3y + true4y)/2)
-        self.box1 = Rectangle(Point(true1x,true1y),Point(true2x,true2y))
-        self.box2 = Rectangle(Point(true3x,true3y),Point(true4x,true4y))
-        self.box1.setFill("grey20")
-        self.box2.setFill("grey20")
+        self.box1 = Image(self.box1centro,"buraco.png")
+        self.box2 = Image(self.box2centro,"buraco.png")
         self.box1.draw(win)
         self.box2.draw(win)
 class Obstaculo:
