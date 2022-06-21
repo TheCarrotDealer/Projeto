@@ -7,7 +7,6 @@ from implementacao2 import *
 from implementacao3 import *
 from implementacao4 import *
 def menu():
-
     win1 = GraphWin("Projeto Ai Menu", 1000, 550)
     win1.setCoords(0, 0, 1000, 550)
 
@@ -22,11 +21,11 @@ def menu():
     red.setFill("red")
     red.draw(win1)
    
-    quitbutton = butão(win1,Point(870,30),Point(970,70),"quit")
-    implementacao1 = butão(win1,Point(830,475),Point(970,525),"implementação 1")
-    implementacao2 = butão(win1,Point( 830,400),Point(970,450),"implementação 2")
-    implementacao3 = butão(win1,Point( 830,325),Point(970,375),"implementação 3")
-    implementacao4 = butão(win1,Point( 830,250),Point(970,300),"implementação 4")
+    quitbutton = butão(win1,Point(870,30),Point(970,70),"Quit")
+    implementacao1 = butão(win1,Point(830,475),Point(970,525),"Implementação 1")
+    implementacao2 = butão(win1,Point( 830,400),Point(970,450),"Implementação 2")
+    implementacao3 = butão(win1,Point( 830,325),Point(970,375),"Implementação 3")
+    implementacao4 = butão(win1,Point( 830,250),Point(970,300),"Implementação 4")
     while True:
         click = win1.getMouse()
         if buttoneasteregg.clicked(click):

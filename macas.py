@@ -2,12 +2,12 @@ from graphics import *
 from classes import *
 from outrasclasses import *
 def multiplemaças(win2,grouparvores,grouppedras):
-        pointstart = Point(540,0)
-        pointstart1 = Point(570,30)
-        startbutton = butão(win2,pointstart,pointstart1,"start")
-        pointquit = Point(570,0)
+        pointstart = Point(510,0)
+        pointstart1 = Point(550,30)
+        startbutton = butão(win2,pointstart,pointstart1,"Start")
+        pointquit = Point(560,0)
         pointquit1 = Point(600,30)
-        quitbutton = butão(win2,pointquit,pointquit1,"quit")
+        quitbutton = butão(win2,pointquit,pointquit1,"Quit")
         quitcounter = 0
         maçasgroup = []
         maçasgroupcentre = []
@@ -45,14 +45,28 @@ def multiplemaças(win2,grouparvores,grouppedras):
                     if maçasgroupcentre != []:
                         macacount = 1
                     if maçasgroupcentre == []:
-                        pass
+                        print("adicione maças")
                 elif quitbutton.clicked(macacentro):
                     quitcounter = 1
                     macacount = 1
                 else: 
-                    maca = Maça(win2,macacentro)
-                    maçasgroup.append(maca)
-                    maçasgroupcentre.append(maca.centro)
+                    if maçasgroupcentre == []:
+                        maca = Maça(win2,macacentro)
+                        maçasgroup.append(maca)
+                        maçasgroupcentre.append(maca.centro)
+                    else:
+                        specialcounter = 0
+                        for i in maçasgroupcentre:
+                            if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 10**2:
+                                specialcounter = specialcounter +1
+                        if specialcounter == 0:
+                            maca = Maça(win2,macacentro)
+                            maçasgroup.append(maca)
+                            maçasgroupcentre.append(maca.centro)
+                        else:
+                            print("maça demasiado perto")
+
+
         return quitcounter, maçasgroup, maçasgroupcentre
 
 def myFunc(e):
