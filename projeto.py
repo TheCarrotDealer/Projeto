@@ -29,7 +29,18 @@ def menu():
     while True:
         click = win1.getMouse()
         if buttoneasteregg.clicked(click):
-            a= Text(Point(randrange(10,990),randrange(540)),"apple")
+            funny = 0
+            while funny==0:
+                funyx = randrange(10,990)
+                funyy = randrange(540)
+                if 810 < funyx < 985:
+                    if 27 < funyy < 77 or 257 < funyy < 307 or 332 < funyy < 382 or 407 < funyy < 457 or 482 < funyy < 532:
+                        funny = 0
+                    else:
+                        funny = 1
+                else:
+                    funny = 1
+            a= Text(Point(funyx,funyy),"apple")
             a.draw(win1)
         if implementacao1.clicked(click):
             win1.close()
