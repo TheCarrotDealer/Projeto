@@ -55,6 +55,8 @@ def multiplemaças(win2,grouparvores,grouppedras):
                     maçasgroupcentre.append(maca.centro)
         return quitcounter, maçasgroup, maçasgroupcentre
 
+def myFunc(e):
+    return e['distance']
 
 def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on):
         counter = 0
@@ -62,9 +64,19 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on):
         while quitcounter == 0:
             for i in range(2):
                 update(1)
-            for l in maçasgroupcentre:
+            objetivomacasgroup = []
+            for a in maçasgroupcentre:
+                b = (body.centre.getX()-a.getX())**2 + (body.centre.getY()-a.getY())**2 
+                objetivomacasgroup .append( {'a':a,'distance':b})
+                objetivomacasgroup .sort(key=myFunc)
+            maçasgroupcentre = []
+            for a in objetivomacasgroup:
+                b = a['a']
+                maçasgroupcentre.append(b)
+            while not maçasgroupcentre == []:
                 counter = 0
                 while counter == 0:
+                    l = maçasgroupcentre[0]
                     update(50)
                     body.moveobjetive(l)
                     body.countbatery(bateria.centro,on)
@@ -77,6 +89,16 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on):
                         for p in maçasgroup:
                             if body.centre.getY() == p.centro.getY() and body.centre.getX() == p.centro.getX():
                                 p.existnt()
+                                objetivomacasgroup = []
+                                maçasgroupcentre.remove(l)
+                                for a in maçasgroupcentre:
+                                    b = (body.centre.getX()-a.getX())**2 + (body.centre.getY()-a.getY())**2 
+                                    objetivomacasgroup.append( {'a':a,'distance':b})
+                                    objetivomacasgroup.sort(key=myFunc)
+                                maçasgroupcentre = []
+                                for a in objetivomacasgroup:
+                                    b = a['a']
+                                    maçasgroupcentre.append(b)  
                     body.mover(body.x,body.y)
             for i in range(2):
                 update(1)

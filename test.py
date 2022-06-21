@@ -1,9 +1,18 @@
+from turtle import distance
 from graphics import * 
-from classes import *
-win1 = GraphWin("Projeto Ai Menu", 600, 600)
-win1.setCoords(0, 0, 600, 600)
+def myFunc(e):
+    return e['distance']
 
+l = 1
+a = 2
+e = 3
+c = 4
+thing=[l,a,e,c]
 
+for i in thing:
+    print(i)
+    print(thing)
+    thing.remove(i)
+print(thing)
 
-circle = Circle(Point(30,30),10)
 

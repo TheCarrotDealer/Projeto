@@ -6,14 +6,6 @@ from implementacao1 import *
 from implementacao2 import *
 from implementacao3 import *
 from implementacao4 import *
-def funny():
-    while True:
-        update(5)
-        win3 = GraphWin("ha", 370, 184)
-        win3.setCoords(0, 0, 370, 184)
-        ha = Image(Point(185,92),"ha.png")
-        ha.draw(win3)
-    
 def menu():
 
     win1 = GraphWin("Projeto Ai Menu", 1000, 550)
@@ -40,7 +32,6 @@ def menu():
         if buttoneasteregg.clicked(click):
             a= Text(Point(randrange(10,990),randrange(540)),"apple")
             a.draw(win1)
-            funny()
         if implementacao1.clicked(click):
             win1.close()
             implementação1()
