@@ -3,32 +3,38 @@ from graphics import *
 from math import *
 class Robot:
     def __init__(self,win,ax,bx): 
+        #Aqui é criado o corpo do robo em si 
         self.body= Circle(Point(ax,bx),10)
         self.bodybatery= Circle(Point(ax,bx),5)
         self.body.setFill("white")
         self.body.draw(win)
         self.bodybatery.setFill("light green")
         self.bodybatery.draw(win)
-        self.centre = Point(ax,bx)
-        self.batery = 0
+        self.centre = Point(ax,bx) #cria o seu centro 
+        self.batery = 0 # cria a vareavel da bateria
     def mover(self,dx,dy):
+        #esta função faz mover o robo e o seu centro
         self.bodybatery.move(dx,dy)
         self.body.move(dx,dy)
         self.centre.move(dx,dy)
-        self.batery = self.batery + 1
+        self.batery = self.batery + 1 #aumenta a bateria
     def distancias(self,ponto3,ponto4):
+        #arredonda as entradas de pontos, ponto3 será de um obstáculo e o ponto4 a localização da maça
         true1x = round(ponto3.getX())
         true1y = round(ponto3.getY())
         true2x = round(ponto4.getX())
         true2y = round(ponto4.getY())
+        #se o obstáculo tiver uma hitbox quadrada aqui é calculada a distancia do centro do robo aos cantos da hitbox do obstáculo
         self.distesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()-true1y)**2
         self.distinf = (self.centre.getX()-true1x)**2 + (self.centre.getY()-40-true1y)**2
         self.distsup = (self.centre.getX()-true1x)**2 + (self.centre.getY()+40-true1y)**2
         self.distdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()-true1y)**2
+        #se o obstáculo tiver uma hitbox circular aqui é calculada a distancia do centro da maça aos cantos da hitbox do obstáculo ( como é um circulo será os estremos do circulo nas coordenadas x e y)
         self.distesqmaca = (true2x-40-true1x)**2 + (true2y-true1y)**2
         self.distinfmaca = (true2x-true1x)**2 + (true2y-40-true1y)**2
         self.distsupmaca = (true2x-true1x)**2 + (true2y+40-true1y)**2
         self.distdirmaca = (true2x+40-true1x)**2 + (true2y-true1y)**2
+        #se o obstáculo tiver uma hitbox quadrada aqui é calculada a distancia do centro da maça aos cantos da hitbox do obstáculo
         self.distcantoinfesqqmaca = (true1x-40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantoinfdirmaca = (true1x+40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantosupesqmaca = (true1x-40-true2x)**2 + (true1y+40-true2y)**2
@@ -375,14 +381,16 @@ class Robot:
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
                     self.C3A2(ponto1)
     def moveobjetive(self,ponto1):
+        #sendo o ponto1 o objetivo aqui é verificado a localização desse objetivo em comparação com o centro do robo
         if self.centre.getX() < ponto1.getX():
-            self.x = 1
+            self.x = 1 #aqui é alterado a direção do robo para que este vá na direção do objetivo
         if self.centre.getX() > ponto1.getX():
             self.x = -1
         if self.centre.getY() < ponto1.getY():
             self.y = 1
         if self.centre.getY() > ponto1.getY():
             self.y = -1
+        #aqui vemos que quando eles partilharem uma coordenada o robo já não tem de se mover em relação a essa coordenada, assim ele acaba por ir em direção para o objetivo
         if self.centre.getX() == ponto1.getX():
             self.x = 0
         if self.centre.getY() == ponto1.getY():
@@ -493,69 +501,68 @@ class Robot:
                     self.circA2B2()
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circA2A2()
+
+
     def countbatery(self,ponto1,on):
-        self.bateryactive = 0
+        #aqui é verificada a bateria e designada a cor do centro do robo
+        self.bateryactive = 0 #aqui temos a verificação se o robo está sem bateria ou não
         if self.batery >= 0:
             self.bodybatery.setFill("light green")
-        if on == 1:
+        if on == 1: #sendo a variavel on responsável por identificar se temos a bateria em conta ou não
             if self.batery >= 1500:
                 self.bodybatery.setFill("yellow")
             if self.batery >= 3000:
                 self.bodybatery.setFill("red")
-            if self.batery >= 4800:
-                self.moveobjetive(ponto1)
-                self.bateryactive = 1
-                if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY():
+            if self.batery >= 4800: #aqui temos o limite da bateria 
+                self.moveobjetive(ponto1) #muda o objetivo do robo para o centro da estação de recarga
+                self.bateryactive = 1 #confirma que está sem bateria
+                if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY(): #quando chega ao centro do centro de recarga espera 2 segundos e renicia a bateria
                     for i in range(2):
                         update(1)
                     self.batery=0
         else:
             pass
+    def randompoint(self): #randomiza pontos
+        x = randrange(61, 540)
+        y = randrange(61, 540)
+        first = Point(x,y)
+        return first
+
     def random(self,numb):
-        self.numbarvores = randrange(0,numb+1)
+        self.numbarvores = randrange(0,numb+1) #randomiza o numero de objetos com hitbox circular, a partir do numero de obstáculos pedidos
         print(self.numbarvores)
-        self.numbpedras = numb - self.numbarvores 
+        self.numbpedras = numb - self.numbarvores #do total de objetos identifica os restantes que têm hitbox quadrada
         print(self.numbpedras)
+        #grupos onde os centros dos obstáculos são guardados
         self.obstgrouparvores = []
         self.obstgrouppedras = []
         self.obstgroup = []
-        if self.numbarvores ==0:
-            x = randrange(61, 540)
-            y = randrange(61, 540)
-            first = Point(x,y)
+        if self.numbarvores ==0: #se só tivermos circulos
+            #randomiza um ponto e adiciona-o ás listas
+            first = self.randompoint()
             self.obstgrouppedras.append(first)
             self.obstgroup.append(first)
-            for i in range(numb-1):
-                x = randrange(61, 540)
-                y = randrange(61, 540)
-                i = Point(x,y)
+            for i in range(numb-1): #cria os pontos pedidos
                 counter = 1
                 while counter ==1:
-                    x = randrange(61, 540)
-                    y = randrange(61, 540)
-                    i = Point(x,y)
+                    i = self.randompoint()
                     counter = 0 
                     for a in self.obstgroup:
                         if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
                             counter = counter + 1
-                if counter == 0:
+                if counter == 0: #se o ponto for válido, é adicionado ás listas
                     self.obstgrouppedras.append(i)
                     self.obstgroup.append(i)
-        if 0 < self.numbarvores < numb:
-            x = randrange(61, 540)
-            y = randrange(61, 540)
-            first = Point(x,y)
+
+
+        if 0 < self.numbarvores < numb: # se tivermos árvores e circulos
+            first = self.randompoint()
             self.obstgrouparvores.append(first)
             self.obstgroup.append(first)
-            for i in range(self.numbarvores - 1):
-                x = randrange(61, 540)
-                y = randrange(61, 540)
-                i = Point(x,y)
+            for i in range(self.numbarvores - 1): 
                 counter = 1
                 while counter ==1:
-                    x = randrange(61, 540)
-                    y = randrange(61, 540)
-                    i = Point(x,y)
+                    i = self.randompoint()
                     counter = 0 
                     for a in self.obstgroup:
                         if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
@@ -564,14 +571,9 @@ class Robot:
                     self.obstgrouparvores.append(i)
                     self.obstgroup.append(i)
             for i in range(self.numbpedras):
-                x = randrange(61, 540)
-                y = randrange(61, 540)
-                i = Point(x,y)
                 counter = 1
                 while counter ==1:
-                    x = randrange(61, 540)
-                    y = randrange(61, 540)
-                    i = Point(x,y)
+                    i = self.randompoint()
                     counter = 0 
                     for a in self.obstgroup:
                         if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
@@ -579,21 +581,16 @@ class Robot:
                 if counter == 0:
                     self.obstgrouppedras.append(i)
                     self.obstgroup.append(i)
+
+
         if self.numbarvores == numb:
-            x = randrange(61, 540)
-            y = randrange(61, 540)
-            first = Point(x,y)
+            first = self.randompoint()
             self.obstgrouparvores.append(first)
             self.obstgroup.append(first)
             for i in range(numb-1):
-                x = randrange(61, 540)
-                y = randrange(61, 540)
-                i = Point(x,y)
                 counter = 1
                 while counter ==1:
-                    x = randrange(61, 540)
-                    y = randrange(61, 540)
-                    i = Point(x,y)
+                    i = self.randompoint()
                     counter = 0 
                     for a in self.obstgroup:
                         if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
