@@ -29,7 +29,8 @@ class Robot:
         self.distinf = (self.centre.getX()-true1x)**2 + (self.centre.getY()-40-true1y)**2
         self.distsup = (self.centre.getX()-true1x)**2 + (self.centre.getY()+40-true1y)**2
         self.distdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()-true1y)**2
-        #se o obstáculo tiver uma hitbox circular aqui é calculada a distancia do centro da maça aos cantos da hitbox do obstáculo ( como é um circulo será os estremos do circulo nas coordenadas x e y)
+        #se o obstáculo tiver uma hitbox circular aqui é calculada a distancia do centro da maça aos cantos da hitbox do obstáculo 
+        # ( como é um circulo será os estremos do circulo nas coordenadas x e y)
         self.distesqmaca = (true2x-40-true1x)**2 + (true2y-true1y)**2
         self.distinfmaca = (true2x-true1x)**2 + (true2y-40-true1y)**2
         self.distsupmaca = (true2x-true1x)**2 + (true2y+40-true1y)**2
@@ -39,17 +40,22 @@ class Robot:
         self.distcantoinfdirmaca = (true1x+40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantosupesqmaca = (true1x-40-true2x)**2 + (true1y+40-true2y)**2
         self.distcantosupdirmaca = (true1x+40-true2x)**2 + (true1y+40-true2y)**2
+    # Temos aqui uma série de funções que designam movimentos específicos para o robo fazer quando entra em contacto com o obstáculo 
+    # para se desviar deste e conseguir se deslocar para o seu objetivo
     def A1C2(self,ponto2):
+        # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getX())
         true2x = round(ponto2.getX())
         true2x = true2x - 40
-        a = (true1x - true2x)
+        a = (true1x - true2x) #calcula quanto tem de se mover
         for i in range(a):
             update(50)
             self.mover(-1,0)
-    def A1C3(self,ponto1,ponto2):
-        self.distancias(ponto1,ponto2)
-        if self.distcantoinfesqqmaca < self.distcantosupdirmaca:
+
+    def A1C3(self,ponto1,ponto2):# escolhe da esquina que devia se movimentar
+        self.distancias(ponto1,ponto2) 
+        #com as distâncias vê qual é o percurso mais rápido para se derigir 
+        if self.distcantoinfesqqmaca < self.distcantosupdirmaca: 
             for i in range(80):
                 update(50)
                 self.mover(-1,0)
@@ -57,7 +63,8 @@ class Robot:
             for i in range(80):
                 update(50)
                 self.mover(0,1)
-    def A1B3(self,ponto2):
+
+    def A1B3(self,ponto2): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getY())
         true2x = round(ponto2.getY())
         true2x = true2x + 40
@@ -65,18 +72,21 @@ class Robot:
         for i in range(a):
             update(50)
             self.mover(0,1)
-    def A2B1(self,ponto1):
+
+    def A2B1(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         a = (true2x - true1x) + 40
         for i in range(a):
             update(50)
             self.mover(0,1)
-    def A2C1(self):
+
+    def A2C1(self): #desloca-se da esquina onde está para a esquina designada
         for i in range(80):
             update(50)
             self.mover(0,1)
-    def A2C2(self,ponto1,ponto2):
+
+    def A2C2(self,ponto1,ponto2): #estando o objetivo no lado oposto á maça é calculado para que lado o robo deverá ir
         self.distancias(ponto1,ponto2)
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
@@ -94,25 +104,29 @@ class Robot:
         for i in range(80):
             update(50)
             self.mover(0,1)
-    def A2C3(self):
+
+    def A2C3(self): #desloca-se da esquina onde está para a esquina designada
         for i in range(80):
             update(50)
             self.mover(0,1)
-    def A2B3(self,ponto1):
+
+    def A2B3(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         a = (true2x - true1x) + 40
         for i in range(a):
             update(50)
             self.mover(0,1)
-    def A3B1(self,ponto1):
+
+    def A3B1(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         a = (true2x - true1x) + 40
         for i in range(a):
             update(50)
             self.mover(0,1)
-    def A3C1(self,ponto1,ponto2):
+
+    def A3C1(self,ponto1,ponto2): # escolhe da esquina que devia se movimentar
         self.distancias(ponto1,ponto2)
         if self.distcantosupesqmaca < self.distcantoinfdirmaca:
             for i in range(80):
@@ -122,14 +136,16 @@ class Robot:
             for i in range(80):
                 update(50)
                 self.mover(1,0)
-    def A3C2(self,ponto1):
+
+    def A3C2(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         a= true2x - true1x + 40
         for i in range(a):
             update(50)
             self.mover(1,0)
-    def B1A2(self,ponto1):
+
+    def B1A2(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         true2x = true2x - 40
@@ -137,11 +153,13 @@ class Robot:
         for i in range(a):
             update(50)
             self.mover(-1,0)
-    def B1A3(self):
+
+    def B1A3(self): #desloca-se da esquina onde está para a esquina designada
         for i in range(80):
             update(50)
             self.mover(-1,0)
-    def B1B3(self,ponto1,ponto2):
+
+    def B1B3(self,ponto1,ponto2): #estando o objetivo no lado oposto á maça é calculado para que lado o robo deverá ir
         self.distancias(ponto1,ponto2)
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
@@ -160,11 +178,13 @@ class Robot:
         for i in range(80):
             update(50)
             self.mover(-1,0)
-    def B1C3(self):
+
+    def B1C3(self): #desloca-se da esquina onde está para a esquina designada
         for i in range(80):
             update(50)
             self.mover(-1,0)
-    def B1C2(self,ponto1):
+
+    def B1C2(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         true2x = true2x - 40
@@ -172,21 +192,25 @@ class Robot:
         for i in range(a):
             update(50)
             self.mover(-1,0)
-    def B3A2(self,ponto1):
+
+    def B3A2(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         a= true2x - true1x + 40
         for i in range(a):
             update(50)
             self.mover(1,0)
-    def B3A1(self):
+
+    def B3A1(self): #desloca-se da esquina onde está para a esquina designada
         for i in range(80):
             update(50)
             self.mover(1,0)
-    def B3B1(self,ponto1,ponto2):
+
+    def B3B1(self,ponto1,ponto2): #estando o objetivo no lado oposto á maça é calculado para que lado o robo deverá ir
         self.distancias(ponto1,ponto2)
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
+        #desloca-se para a esquina que o dará o percurso mais curto
         if  self.distcantosupdirmaca < self.distcantoinfdirmaca:
             true2x = true2x + 40
             a = (true2x - true1x)
@@ -199,21 +223,24 @@ class Robot:
             for i in range(a):
                 update(50)
                 self.mover(0,-1)
+        for i in range(80): # estando já na esquina este desloca-se da esquina onde está para a esquina designada
+            update(50)
+            self.mover(1,0)
+
+    def B3C1(self): #desloca-se da esquina onde está para a esquina designada
         for i in range(80):
             update(50)
             self.mover(1,0)
-    def B3C1(self):
-        for i in range(80):
-            update(50)
-            self.mover(1,0)
-    def B3C2(self,ponto1):
+
+    def B3C2(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         a= true2x - true1x + 40
         for i in range(a):
             update(50)
             self.mover(1,0)
-    def C1A2(self,ponto1):
+
+    def C1A2(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         true2x = true2x - 40
@@ -221,7 +248,8 @@ class Robot:
         for i in range(a):
             update(50)
             self.mover(-1,0)
-    def C1A3(self,ponto1,ponto2):
+
+    def C1A3(self,ponto1,ponto2): # escolhe da esquina que devia se movimentar
         self.distancias(ponto1,ponto2)
         if self.distcantosupesqmaca < self.distcantoinfdirmaca:
             for i in range(80):
@@ -231,7 +259,8 @@ class Robot:
             for i in range(80):
                 update(50)
                 self.mover(0,-1)
-    def C1B3(self,ponto1):
+
+    def C1B3(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         true2x = true2x - 40
@@ -239,7 +268,8 @@ class Robot:
         for i in range(a):
             update(50)
             self.mover(0,-1)
-    def C2B1(self,ponto1):
+
+    def C2B1(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         true2x = true2x - 40
@@ -247,11 +277,13 @@ class Robot:
         for i in range(a):
             update(50)
             self.mover(0,-1)
-    def C2A1(self):
+
+    def C2A1(self): #desloca-se da esquina onde está para a esquina designada
         for i in range(80):
             update(50)
             self.mover(0,-1)
-    def C2A2(self,ponto1,ponto2):
+
+    def C2A2(self,ponto1,ponto2): #estando o objetivo no lado oposto á maça é calculado para que lado o robo deverá ir
         self.distancias(ponto1,ponto2)
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
@@ -266,14 +298,16 @@ class Robot:
             for i in range(a):
                 update(50)
                 self.mover(1,0)
+        for i in range(80): 
+            update(50)
+            self.mover(0,-1)
+
+    def C2A3(self): #desloca-se da esquina onde está para a esquina designada
         for i in range(80):
             update(50)
             self.mover(0,-1)
-    def C2A3(self):
-        for i in range(80):
-            update(50)
-            self.mover(0,-1)
-    def C2B3(self,ponto1):
+
+    def C2B3(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         true2x = true2x - 40
@@ -281,7 +315,8 @@ class Robot:
         for i in range(a):
             update(50)
             self.mover(0,-1)
-    def C3B1(self,ponto1):
+
+    def C3B1(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getY())
         true2x = round(ponto1.getY())
         true2x = true2x - 40
@@ -289,7 +324,8 @@ class Robot:
         for i in range(a):
             update(50)
             self.mover(0,-1)
-    def C3A1(self,ponto1,ponto2):
+
+    def C3A1(self,ponto1,ponto2): # escolhe da esquina que devia se movimentar
         self.distancias(ponto1,ponto2)
         if self.distcantoinfesqqmaca < self.distcantosupdirmaca:
             for i in range(80):
@@ -299,87 +335,135 @@ class Robot:
             for i in range(80):
                 update(50)
                 self.mover(1,0) 
-    def C3A2(self,ponto1):
+
+    def C3A2(self,ponto1): # o robo desloca-se do local onde está na parede para o canto designado
         true1x = round(self.centre.getX())
         true2x = round(ponto1.getX())
         a= true2x - true1x + 40
         for i in range(a):
             update(50)
             self.mover(1,0)
+
     def movimentoobst(self,ponto1,ponto2):
+        # verifica se o robo está dentro da hitbox quadrada do obstáculo
+
         if self.centre.getX() > (ponto1.getX()-40) and self.centre.getY() > (ponto1.getY()-40) and self.centre.getX() < (ponto1.getX()+40) and self.centre.getY() < (ponto1.getY()+40) :
+            # quando estiver na esquina, é verificada a posição do objetivo em relação ao obstáculo
+
             if ponto1.getX() - 40 >= ponto2.getX() and ponto1.getY() + 40 <= ponto2.getY():
+                # caso o objetivo esteja nesta posição, o robo ao ter tocado só poderá estar numa de algumas posições
+                # em relação ao obstáculo e aqui é verificado qual delas é a que o robo se encontra para realizar o movimento nessesário 
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
-                    self.A1C2(ponto1)
+                    self.A1C2(ponto1) 
+
                 if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.A1C3(ponto1,ponto2)
+
                 if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.A1B3(ponto1)
+
             if ponto1.getX() - 40 <= ponto2.getX() <= ponto1.getX() + 40  and ponto1.getY() + 40 <= ponto2.getY():
+
                 if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.A2B1(ponto1)
+
                 if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.A2C1()
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.A2C2(ponto1,ponto2)
+
                 if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.A2C3()
+
                 if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.A2B3(ponto1)
+
             if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() + 40 < ponto2.getY():
+
                 if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.A3C1(ponto1,ponto2)
+
                 if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.A3B1(ponto1)
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.A3C2(ponto1)
+
             if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40:
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.B1C2(ponto1)
+
                 if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.B1C3()
+
                 if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.B1B3(ponto1,ponto2)
+
                 if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
                     self.B1A3()
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
                     self.B1A2(ponto1)
+
             if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40:
+
                 if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 38 < self.centre.getY():
                     self.B3A1()
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
                     self.B3A2(ponto1)
+
                 if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.B3B1(ponto1,ponto2)
+
                 if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.B3C1()
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
                     self.B3C2(ponto1)
+
             if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 > ponto2.getY():
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
                     self.C1A2(ponto1)
+
                 if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
                     self.C1A3(ponto1,ponto2)
+
                 if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.C1B3(ponto1)
+
             if ponto1.getX() - 40 < ponto2.getX() < ponto1.getX() + 40 and ponto1.getY() - 40 > ponto2.getY():
+
                 if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.C2B1(ponto1)
+
                 if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 39 < self.centre.getY():
                     self.C2A1()
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
                     self.C2A2(ponto1,ponto2)
+
                 if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
                     self.C2A3()
+
                 if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.C2B3(ponto1)
+
             if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 > ponto2.getY():
+
                 if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
                     self.C3B1(ponto1)
+
                 if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 39 < self.centre.getY():
                     self.C3A1(ponto1,ponto2)
+
                 if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
                     self.C3A2(ponto1)
+
     def moveobjetive(self,ponto1):
         #sendo o ponto1 o objetivo aqui é verificado a localização desse objetivo em comparação com o centro do robo
         if self.centre.getX() < ponto1.getX():
