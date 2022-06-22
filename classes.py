@@ -3,6 +3,7 @@ from graphics import *
 from math import *
 
 class Robot:
+    
     def __init__(self,win,ax,bx): 
         #Aqui é criado o corpo do robo em si 
         self.body= Circle(Point(ax,bx),10)
