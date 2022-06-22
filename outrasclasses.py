@@ -6,8 +6,10 @@ class Maça:
     def __init__(self,win,ponto): # cria o objeto "maça" a partir de um ponto e desenha-a
         poentox = round(ponto.getX()) # arredonda as suas coordenadas para evitar erros
         poentoy = round(ponto.getY())
+        
         self.corpo = Image(Point(poentox,poentoy),"basketapples.png")
         self.corpo.draw(win)
+
         self.centro = Point(poentox,poentoy) #cria o seu centro
 
     def existnt(self): #apaga a maça
