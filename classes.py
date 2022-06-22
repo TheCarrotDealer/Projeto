@@ -1,6 +1,7 @@
 from random import *
 from graphics import * 
 from math import *
+
 class Robot:
     def __init__(self,win,ax,bx): 
         #Aqui é criado o corpo do robo em si 
@@ -12,35 +13,41 @@ class Robot:
         self.bodybatery.draw(win)
         self.centre = Point(ax,bx) #cria o seu centro 
         self.batery = 0 # cria a vareavel da bateria
+
     def mover(self,dx,dy):
         #esta função faz mover o robo e o seu centro
         self.bodybatery.move(dx,dy)
         self.body.move(dx,dy)
         self.centre.move(dx,dy)
         self.batery = self.batery + 1 #aumenta a bateria
+
     def distancias(self,ponto3,ponto4):
         #arredonda as entradas de pontos, ponto3 será de um obstáculo e o ponto4 a localização da maça
         true1x = round(ponto3.getX())
         true1y = round(ponto3.getY())
         true2x = round(ponto4.getX())
         true2y = round(ponto4.getY())
+
         #se o obstáculo tiver uma hitbox quadrada aqui é calculada a distancia do centro do robo aos cantos da hitbox do obstáculo
         self.distesq = (self.centre.getX()-40-true1x)**2 + (self.centre.getY()-true1y)**2
         self.distinf = (self.centre.getX()-true1x)**2 + (self.centre.getY()-40-true1y)**2
         self.distsup = (self.centre.getX()-true1x)**2 + (self.centre.getY()+40-true1y)**2
         self.distdir = (self.centre.getX()+40-true1x)**2 + (self.centre.getY()-true1y)**2
+
         #se o obstáculo tiver uma hitbox circular aqui é calculada a distancia do centro da maça aos cantos da hitbox do obstáculo 
         # ( como é um circulo será os estremos do circulo nas coordenadas x e y)
         self.distesqmaca = (true2x-40-true1x)**2 + (true2y-true1y)**2
         self.distinfmaca = (true2x-true1x)**2 + (true2y-40-true1y)**2
         self.distsupmaca = (true2x-true1x)**2 + (true2y+40-true1y)**2
         self.distdirmaca = (true2x+40-true1x)**2 + (true2y-true1y)**2
+
         #se o obstáculo tiver uma hitbox quadrada aqui é calculada a distancia do centro da maça aos cantos da hitbox do obstáculo
         self.distcantoinfesqqmaca = (true1x-40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantoinfdirmaca = (true1x+40-true2x)**2 + (true1y-40-true2y)**2
         self.distcantosupesqmaca = (true1x-40-true2x)**2 + (true1y+40-true2y)**2
         self.distcantosupdirmaca = (true1x+40-true2x)**2 + (true1y+40-true2y)**2
-    # Temos aqui uma série de funções que designam movimentos específicos para o robo fazer quando entra em contacto com o obstáculo 
+
+    # Temos aqui uma série de funções que designam movimentos específicos para o robo fazer quando entra em contacto com o obstáculo quadrado
     # para se desviar deste e conseguir se deslocar para o seu objetivo
     def A1C2(self,ponto2):
         # o robo desloca-se do local onde está na parede para o canto designado
@@ -348,9 +355,11 @@ class Robot:
         # verifica se o robo está dentro da hitbox quadrada do obstáculo
 
         if self.centre.getX() > (ponto1.getX()-40) and self.centre.getY() > (ponto1.getY()-40) and self.centre.getX() < (ponto1.getX()+40) and self.centre.getY() < (ponto1.getY()+40) :
-            # quando estiver na esquina, é verificada a posição do objetivo em relação ao obstáculo
+            
+            #verificada a posição do objetivo em relação ao obstáculo
 
             if ponto1.getX() - 40 >= ponto2.getX() and ponto1.getY() + 40 <= ponto2.getY():
+
                 # caso o objetivo esteja nesta posição, o robo ao ter tocado só poderá estar numa de algumas posições
                 # em relação ao obstáculo e aqui é verificado qual delas é a que o robo se encontra para realizar o movimento nessesário 
 
@@ -466,40 +475,56 @@ class Robot:
 
     def moveobjetive(self,ponto1):
         #sendo o ponto1 o objetivo aqui é verificado a localização desse objetivo em comparação com o centro do robo
+
         if self.centre.getX() < ponto1.getX():
             self.x = 1 #aqui é alterado a direção do robo para que este vá na direção do objetivo
+
         if self.centre.getX() > ponto1.getX():
             self.x = -1
+
         if self.centre.getY() < ponto1.getY():
             self.y = 1
+
         if self.centre.getY() > ponto1.getY():
             self.y = -1
+
         #aqui vemos que quando eles partilharem uma coordenada o robo já não tem de se mover em relação a essa coordenada, assim ele acaba por ir em direção para o objetivo
         if self.centre.getX() == ponto1.getX():
             self.x = 0
+
         if self.centre.getY() == ponto1.getY():
             self.y = 0
-    def circA1A2(self):
+
+    # Temos aqui uma série de funções que designam movimentos específicos para o robo fazer quando entra em contacto com o obstáculo circular
+    # para se desviar deste e conseguir se deslocar para o seu objetivo
+
+    def circA1A2(self): #muda a direção do movimento para sair da zona do circulo (em direção ao seu objetivo)
         self.x = 0
         self.y = 1
-    def circA1B1(self):
+
+    def circA1B1(self):#muda a direção do movimento para sair da zona do circulo
         self.x = -1
         self.y = 0
-    def circA1B2(self,ponto1,ponto2):
+
+    def circA1B2(self,ponto1,ponto2): # a partir das distâncias verifica para que lado o robo deverá se deslocar para mais rápidamente ultrapassar o obstáculo
         self.distancias(ponto1,ponto2)
         if self.distsupmaca + self.distdir  > self.distesqmaca + self.distinf:
+            #muda a direção do movimento para sair da zona do circulo
             self.x = 1
             self.y = 0
         if self.distsupmaca + self.distdir  <= self.distesqmaca + self.distinf:
             self.x = 0
             self.y = -1
-    def circA1A1(self):
+
+    def circA1A1(self):#muda a direção do movimento para sair da zona do circulo
         self.x = -1
         self.y = 1
-    def circA2A1(self):
+
+    def circA2A1(self):#muda a direção do movimento para sair da zona do circulo
         self.x = 0
         self.y = 1
-    def circA2B1(self,ponto1,ponto2):
+
+    def circA2B1(self,ponto1,ponto2): # a partir das distâncias verifica para que lado o robo deverá se deslocar para mais rápidamente ultrapassar o obstáculo
         self.distancias(ponto1,ponto2)
         if self.distsupmaca + self.distesq  > self.distdirmaca + self.distinf:
             self.x = -1
@@ -507,16 +532,20 @@ class Robot:
         if self.distsupmaca + self.distesq  <= self.distdirmaca + self.distinf:
             self.x = 0
             self.y = -1
-    def circA2B2(self):
+
+    def circA2B2(self):#muda a direção do movimento para sair da zona do circulo
         self.x = 1
         self.y = 0
-    def circA2A2(self):
+
+    def circA2A2(self):#muda a direção do movimento para sair da zona do circulo
         self.x = 1
         self.y = 1
-    def circB1A1(self):
+
+    def circB1A1(self):#muda a direção do movimento para sair da zona do circulo
         self.x = -1
         self.y = 0
-    def circB1A2(self,ponto1,ponto2):
+
+    def circB1A2(self,ponto1,ponto2): # a partir das distâncias verifica para que lado o robo deverá se deslocar para mais rápidamente ultrapassar o obstáculo
         self.distancias(ponto1,ponto2)
         if self.distsup + self.distesqmaca  > self.distdir + self.distinfmaca:
             self.x = 0
@@ -524,13 +553,16 @@ class Robot:
         if self.distsup + self.distesqmaca  <= self.distdir + self.distinfmaca:
             self.x = 1
             self.y = 0
-    def circB1B2(self):
+
+    def circB1B2(self):#muda a direção do movimento para sair da zona do circulo
         self.x = 0
         self.y = -1
-    def circB1B1(self):
+
+    def circB1B1(self):#muda a direção do movimento para sair da zona do circulo
         self.x = -1
         self.y = -1
-    def circB2A1(self,ponto1,ponto2):
+
+    def circB2A1(self,ponto1,ponto2): # a partir das distâncias verifica para que lado o robo deverá se deslocar para mais rápidamente ultrapassar o obstáculo
         self.distancias(ponto1,ponto2)
         if self.distsup + self.distdirmaca  > self.distesq + self.distinfmaca:
             self.x = 0
@@ -538,51 +570,80 @@ class Robot:
         if self.distsup + self.distdirmaca  <= self.distesq + self.distinfmaca:
             self.x = -1
             self.y = 0
-    def circB2A2(self):
+
+    def circB2A2(self):#muda a direção do movimento para sair da zona do circulo
         self.x = 1
         self.y = 0
-    def circB2B1(self):
+
+    def circB2B1(self):#muda a direção do movimento para sair da zona do circulo
         self.x = 0
         self.y = -1
-    def circB2B2(self):
+
+    def circB2B2(self):#muda a direção do movimento para sair da zona do circulo
         self.x = 1
         self.y = -1
+
     def movearvore(self,ponto1,ponto2):
+        # verifica se o robo está dentro da hitbox circular do obstáculo
         if (self.centre.getX() - ponto1.getX())**2 + (self.centre.getY() - ponto1.getY())**2 <= 40**2:
+            #verificada a posição do objetivo em relação ao obstáculo
+
             if ponto2.getX() <= ponto1.getX() and ponto2.getY() >= ponto1.getY():
+                # caso o objetivo esteja nesta posição, o robo ao ter tocado só poderá estar numa de algumas posições
+                # em relação ao obstáculo e aqui é verificado qual delas é a que o robo se encontra para realizar o movimento nessesário
+                # para se desviar do obstáculo 
+
                 if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
                     self.circA1A1()
+
                 if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
                     self.circA1B1()
+
                 if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
                     self.circA1B2(ponto1,ponto2)
+
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circA1A2()
+
             if ponto2.getX() < ponto1.getX() and ponto2.getY() < ponto1.getY():
+
                 if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
                     self.circB1A1()
+
                 if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
                     self.circB1B1()
+
                 if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
                     self.circB1B2()
+
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circB1A2(ponto1,ponto2)
+
             if ponto2.getX() >= ponto1.getX() and ponto2.getY() <= ponto1.getY():
+
                 if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
                     self.circB2A1(ponto1,ponto2)
+
                 if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
                     self.circB2B1()
+
                 if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
                     self.circB2B2()
+
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circB2A2()
+
             if ponto2.getX() > ponto1.getX() and ponto2.getY() > ponto1.getY():
+
                 if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
                     self.circA2A1()
+
                 if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
                     self.circA2B1(ponto1,ponto2)
+
                 if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
                     self.circA2B2()
+
                 if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
                     self.circA2A2()
 
@@ -606,6 +667,7 @@ class Robot:
                     self.batery=0
         else:
             pass
+
     def randompoint(self): #randomiza pontos
         x = randrange(61, 540)
         y = randrange(61, 540)
@@ -726,7 +788,6 @@ class Robot:
                 else:
                     print("Obstáculo inválido")
                         
-
             except ValueError:
                 break
 
