@@ -38,7 +38,7 @@ class Obstaculo:
             self.obs = Image(self.obscentro,"bush.png")
         self.obs.draw(win)
 class Arvore:
-    def __init__(self, win, ponto1,size):
+    def __init__(self, win, ponto1):
         self.centre = ponto1
         self.arvore = Image(self.centre,"arvore.png")
         self.arvore.draw(win)

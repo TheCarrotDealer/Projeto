@@ -10,7 +10,7 @@ def implementação1():
 
     a = Point (300, 300)
 
-    arvore = Arvore(win,a,30)
+    arvore = Arvore(win,a)
 
     body = Robot(win,10,10)
 

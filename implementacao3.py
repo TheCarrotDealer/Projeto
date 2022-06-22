@@ -16,7 +16,7 @@ def implementação3():
             l = randrange(0,2)
             i = Obstaculo(Point(thex,they),Point(the1x,the1y),win2,l)
         for a in body.obstgrouparvores:
-            a = Arvore(win2,a,30)
+            a = Arvore(win2,a)
         grouparvores = body.obstgrouparvores 
         grouppedras = body.obstgrouppedras
         moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,1)

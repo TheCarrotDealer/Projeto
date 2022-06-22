@@ -23,7 +23,7 @@ def implementação4():
             body.obstgrouppedras.append(l)
             l = Obstaculo(Point(thex,they),Point(the1x,the1y),win2,0)
         for a in body.obstgrouparvores:
-            a = Arvore(win2,a,30)
+            a = Arvore(win2,a)
         grouparvores = body.obstgrouparvores 
         grouppedras = body.obstgrouppedras
         moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,1)

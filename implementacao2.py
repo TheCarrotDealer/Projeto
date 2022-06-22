@@ -12,9 +12,9 @@ def implementação2():
         pontopedra22 = Point(480,180)
         pedra1 = Obstaculo(pontopedra1,pontopedra12,win2,1)
         pedra2 = Obstaculo(pontopedra2,pontopedra22,win2,0)
-        arvore2 = Arvore(win2,Point (150, 150),30)
-        arvore3 = Arvore(win2,Point (450, 450),30)
-        arvore = Arvore(win2,Point (300, 300),30)
+        arvore2 = Arvore(win2,Point (150, 150))
+        arvore3 = Arvore(win2,Point (450, 450))
+        arvore = Arvore(win2,Point (300, 300))
         grouppedras = []
         grouparvores = []
         for i in [arvore.centre,arvore2.centre,arvore3.centre]:
