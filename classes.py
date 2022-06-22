@@ -531,23 +531,26 @@ class Robot:
     def random(self,numb):
         self.numbarvores = randrange(0,numb+1) #randomiza o numero de objetos com hitbox circular, a partir do numero de obstáculos pedidos
         print(self.numbarvores)
-        self.numbpedras = numb - self.numbarvores #do total de objetos identifica os restantes que têm hitbox quadrada
+        self.numbpedras = numb - self.numbarvores #numero de objetos com hitbox quadrada
         print(self.numbpedras)
+
         #grupos onde os centros dos obstáculos são guardados
         self.obstgrouparvores = []
         self.obstgrouppedras = []
         self.obstgroup = []
+
         if self.numbarvores ==0: #se só tivermos circulos
             #randomiza um ponto e adiciona-o ás listas
             first = self.randompoint()
             self.obstgrouppedras.append(first)
             self.obstgroup.append(first)
+
             for i in range(numb-1): #cria os pontos pedidos
                 counter = 1
                 while counter ==1:
                     i = self.randompoint()
                     counter = 0 
-                    for a in self.obstgroup:
+                    for a in self.obstgroup:#verifica se os pontos estáo demasiado pertos
                         if sqrt((i.getX() - a.getX())**2 + (i.getY() - a.getY())**2) < 120:
                             counter = counter + 1
                 if counter == 0: #se o ponto for válido, é adicionado ás listas
@@ -559,7 +562,8 @@ class Robot:
             first = self.randompoint()
             self.obstgrouparvores.append(first)
             self.obstgroup.append(first)
-            for i in range(self.numbarvores - 1): 
+
+            for i in range(self.numbarvores - 1): #para o numero de árvores cria pontos random, tal que estes não criem objetos que se intersetam 
                 counter = 1
                 while counter ==1:
                     i = self.randompoint()
@@ -570,7 +574,9 @@ class Robot:
                 if counter == 0:
                     self.obstgrouparvores.append(i)
                     self.obstgroup.append(i)
-            for i in range(self.numbpedras):
+
+
+            for i in range(self.numbpedras): #repete o processo para as pedras
                 counter = 1
                 while counter ==1:
                     i = self.randompoint()
@@ -583,7 +589,7 @@ class Robot:
                     self.obstgroup.append(i)
 
 
-        if self.numbarvores == numb:
+        if self.numbarvores == numb: #o mesmo processo mas para só arvores
             first = self.randompoint()
             self.obstgrouparvores.append(first)
             self.obstgroup.append(first)
@@ -601,28 +607,30 @@ class Robot:
 
 
     def file(self,file):
+        #cria os grupos de obstáculos
         self.obstgrouparvores = []
         self.obstgrouparbustos = []
         self.obstgrouppedras = []
         self.obstaculos = []
         counter = 0
-        for i in file.readlines():
+        for i in file.readlines(): #lê o file inserido
             i = str(i)
             try:
                 x , y , ob = i.split(" ")
                 x = int(x)
                 y = int(y)
                 counter = 0
-                for l in self.obstaculos:
+                # verifica se o ponto do obstáculo inserido é válido
+                for l in self.obstaculos: # se está demasiado perto de outros obstáculos 
                     if sqrt((x - l.getX())**2 + (y - l.getY())**2) < 120:
                         counter = counter + 1 
                         print("Obstáculo demasiado perto de outros objetos")
-                    if x<= 21 or 530 < x or y<= 21 or 530 < y:
+                    if x<= 21 or 570 < x or y<= 21 or 570 < y: # se está demasiado perto das bordas
                         counter = counter + 1 
                         print("Obstáculo demasiado perto das bordas onde se localizam objetivos")
                 self.obstaculos.append(Point(x,y))
                 if counter == 0:
-                    ob = int(ob)
+                    ob = int(ob) #se o ponto for válido verifica se o ponto é um arbusto, uma arvore ou uma pedra
                     if ob == 1:
                         self.obstgrouppedras.append(Point(x,y))
                     elif ob == 2:
@@ -637,9 +645,10 @@ class Robot:
 
             except ValueError:
                 break
-    def dodgeeverything(self,grouparvores,grouppedras,objective):
-        for i in grouparvores:
+
+    def dodgeeverything(self,grouparvores,grouppedras,objective): # agrupa as funções para o robo se desviar de quadrados e de circulos 
+        for i in grouparvores: #verifica para todos os circulos
             self.movearvore(i,objective) 
-        for i in grouppedras:
+        for i in grouppedras: #verifica para todos os quadrados
             self.movimentoobst(i,objective) 
 
