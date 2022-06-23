@@ -359,119 +359,119 @@ class Robot:
             
             #verificada a posição do objetivo em relação ao obstáculo
 
-            if ponto1.getX() - 40 >= ponto2.getX() and ponto1.getY() + 40 <= ponto2.getY():
+            if ponto1.getX() - 40 >= ponto2.getX() and ponto1.getY() + 40 <= ponto2.getY(): #zona da maça A1
 
                 # caso o objetivo esteja nesta posição, o robo ao ter tocado só poderá estar numa de algumas posições
                 # em relação ao obstáculo e aqui é verificado qual delas é a que o robo se encontra para realizar o movimento nessesário 
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C2
                     self.A1C2(ponto1) 
 
-                if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C3
                     self.A1C3(ponto1,ponto2)
 
-                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B3
                     self.A1B3(ponto1)
 
-            if ponto1.getX() - 40 <= ponto2.getX() <= ponto1.getX() + 40  and ponto1.getY() + 40 <= ponto2.getY():
+            if ponto1.getX() - 40 <= ponto2.getX() <= ponto1.getX() + 40  and ponto1.getY() + 40 <= ponto2.getY(): #zona da maça A2
 
-                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B1
                     self.A2B1(ponto1)
 
-                if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C1
                     self.A2C1()
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C2
                     self.A2C2(ponto1,ponto2)
 
-                if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C3
                     self.A2C3()
 
-                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B3
                     self.A2B3(ponto1)
 
-            if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() + 40 < ponto2.getY():
+            if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() + 40 < ponto2.getY(): #zona da maça A3
 
-                if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C1
                     self.A3C1(ponto1,ponto2)
 
-                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B1
                     self.A3B1(ponto1)
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C2
                     self.A3C2(ponto1)
 
-            if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40:
+            if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40: #zona da maça B1
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C2
                     self.B1C2(ponto1)
 
-                if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if self.centre.getX() >= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C3
                     self.B1C3()
 
-                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B3
                     self.B1B3(ponto1,ponto2)
 
-                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
+                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY(): #zona do robo A3
                     self.B1A3()
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY(): #zona do robo A2
                     self.B1A2(ponto1)
 
-            if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40:
+            if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 < ponto2.getY() < ponto1.getY() + 40: #zona da maça B3
 
-                if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 38 < self.centre.getY():
+                if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 38 < self.centre.getY(): #zona do robo A1
                     self.B3A1()
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY(): #zona do robo A2
                     self.B3A2(ponto1)
 
-                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B1
                     self.B3B1(ponto1,ponto2)
 
-                if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if self.centre.getX() <= ponto1.getX() - 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C1
                     self.B3C1()
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39:
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and self.centre.getY() <= ponto1.getY() - 39: #zona do robo C2
                     self.B3C2(ponto1)
 
-            if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 > ponto2.getY():
+            if ponto1.getX() - 40 > ponto2.getX() and ponto1.getY() - 40 > ponto2.getY(): #zona da maça C1
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY(): #zona do robo A2
                     self.C1A2(ponto1)
 
-                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
+                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY(): #zona do robo A3
                     self.C1A3(ponto1,ponto2)
 
-                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B3
                     self.C1B3(ponto1)
 
-            if ponto1.getX() - 40 < ponto2.getX() < ponto1.getX() + 40 and ponto1.getY() - 40 > ponto2.getY():
+            if ponto1.getX() - 40 < ponto2.getX() < ponto1.getX() + 40 and ponto1.getY() - 40 > ponto2.getY(): #zona da maça C2
 
-                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B1
                     self.C2B1(ponto1)
 
-                if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 39 < self.centre.getY():
+                if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 39 < self.centre.getY(): #zona do robo A1
                     self.C2A1()
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY(): #zona do robo A2
                     self.C2A2(ponto1,ponto2)
 
-                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY():
+                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() + 39 < self.centre.getY(): #zona do robo A3
                     self.C2A3()
 
-                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() >= ponto1.getX() + 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B3
                     self.C2B3(ponto1)
 
-            if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 > ponto2.getY():
+            if ponto1.getX() + 40 < ponto2.getX() and ponto1.getY() - 40 > ponto2.getY(): #zona da maça C3
 
-                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39:
+                if self.centre.getX() <= ponto1.getX() - 39 and ponto1.getY() - 39 < self.centre.getY() < ponto1.getY() + 39: #zona do robo B1
                     self.C3B1(ponto1)
 
-                if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 39 < self.centre.getY():
+                if self.centre.getX() < ponto1.getX() - 39 and ponto1.getY() + 39 < self.centre.getY(): #zona do robo A1
                     self.C3A1(ponto1,ponto2)
 
-                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY():
+                if ponto1.getX() - 39 <= self.centre.getX() <= ponto1.getX() + 39 and ponto1.getY() + 38 < self.centre.getY(): #zona do robo A2
                     self.C3A2(ponto1)
 
     def moveobjetive(self,ponto1):
@@ -589,63 +589,63 @@ class Robot:
         if (self.centre.getX() - ponto1.getX())**2 + (self.centre.getY() - ponto1.getY())**2 <= 40**2:
             #verificada a posição do objetivo em relação ao obstáculo
 
-            if ponto2.getX() <= ponto1.getX() and ponto2.getY() >= ponto1.getY():
+            if ponto2.getX() <= ponto1.getX() and ponto2.getY() >= ponto1.getY(): #zona da maça A1
                 # caso o objetivo esteja nesta posição, o robo ao ter tocado só poderá estar numa de algumas posições
                 # em relação ao obstáculo e aqui é verificado qual delas é a que o robo se encontra para realizar o movimento nessesário
                 # para se desviar do obstáculo 
 
-                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
+                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY(): #zona do robo A1
                     self.circA1A1()
 
-                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
+                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():#zona do robo B1
                     self.circA1B1()
 
-                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
+                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY(): #zona do robo B2
                     self.circA1B2(ponto1,ponto2)
 
-                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
+                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY(): #zona do robo A2
                     self.circA1A2()
 
-            if ponto2.getX() < ponto1.getX() and ponto2.getY() < ponto1.getY():
+            if ponto2.getX() < ponto1.getX() and ponto2.getY() < ponto1.getY(): #zona da maça B1
 
-                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
+                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():#zona do robo A1
                     self.circB1A1()
 
-                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
+                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():#zona do robo B1
                     self.circB1B1()
 
-                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
+                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():#zona do robo B2
                     self.circB1B2()
 
-                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
+                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():#zona do robo A2
                     self.circB1A2(ponto1,ponto2)
 
-            if ponto2.getX() >= ponto1.getX() and ponto2.getY() <= ponto1.getY():
+            if ponto2.getX() >= ponto1.getX() and ponto2.getY() <= ponto1.getY(): #zona da maça B2
 
-                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
+                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():#zona do robo A1
                     self.circB2A1(ponto1,ponto2)
 
-                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
+                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY(): #zona do robo B1
                     self.circB2B1()
 
-                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
+                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():#zona do robo B2
                     self.circB2B2()
 
-                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
+                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():#zona do robo A2
                     self.circB2A2()
 
-            if ponto2.getX() > ponto1.getX() and ponto2.getY() > ponto1.getY():
+            if ponto2.getX() > ponto1.getX() and ponto2.getY() > ponto1.getY(): #zona da maça A2
 
-                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():
+                if self.centre.getX() <= ponto1.getX() and self.centre.getY() >= ponto1.getY():#zona do robo A1
                     self.circA2A1()
 
-                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():
+                if self.centre.getX() < ponto1.getX() and self.centre.getY() < ponto1.getY():#zona do robo B1
                     self.circA2B1(ponto1,ponto2)
 
-                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():
+                if self.centre.getX() >= ponto1.getX() and self.centre.getY() <= ponto1.getY():#zona do robo B2
                     self.circA2B2()
 
-                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():
+                if self.centre.getX() > ponto1.getX() and self.centre.getY() > ponto1.getY():#zona do robo A2
                     self.circA2A2()
 
 
