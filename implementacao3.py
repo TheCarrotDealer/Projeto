@@ -35,6 +35,6 @@ def implementação3():
         grouppedras = body.obstgrouppedras
 
         #processo de movimentos 
-        moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,1)
+        moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,1,0,0)
         
         win2.close()

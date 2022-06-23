@@ -6,6 +6,7 @@ from implementacao1 import *
 from implementacao2 import *
 from implementacao3 import *
 from implementacao4 import *
+from implementacao41 import *
 def menu():
 
     #cria a janela
@@ -26,11 +27,12 @@ def menu():
     red.draw(win1)
     
     #cria o resto dos butões
-    quitbutton = butão(win1,Point(870,30),Point(970,70),"Quit")
+    quitbutton = butão(win1,Point(830,30),Point(970,70),"Quit")
     implementacao1 = butão(win1,Point(830,475),Point(970,525),"Implementação 1")
     implementacao2 = butão(win1,Point( 830,400),Point(970,450),"Implementação 2")
     implementacao3 = butão(win1,Point( 830,325),Point(970,375),"Implementação 3")
     implementacao4 = butão(win1,Point( 830,250),Point(970,300),"Implementação 4")
+    implementacao41 = butão(win1,Point( 830,175),Point(970,225),"Implementação 4.1")
 
     while True:
         click = win1.getMouse()
@@ -39,18 +41,19 @@ def menu():
         if buttoneasteregg.clicked(click):
 
             #cria um ponto random (fora dos butões)
+            
             funny = 0
             while funny==0:
                 funyx = randrange(10,990)
                 funyy = randrange(540)
                 if 810 < funyx < 985:
-                    if 23 < funyy < 77 or 253 < funyy < 307 or 328 < funyy < 382 or 403 < funyy < 457 or 428 < funyy < 532:
+                    if 23 < funyy < 77 or 253 < funyy < 307 or 328 < funyy < 382 or 403 < funyy < 457 or 468 < funyy < 532 or 170 < funyy < 230:
                         funny = 0
                     else:
                         funny = 1
                 else:
-                    funny = 1
-            
+                     funny = 1
+                
             #transforma esse ponto em um texto a dizer "apple"
             a= Text(Point(funyx,funyy),"apple")
             a.draw(win1)
@@ -74,6 +77,11 @@ def menu():
         if implementacao4.clicked(click):
             win1.close()
             implementação4()
+            menu()
+        
+        if implementacao41.clicked(click):
+            win1.close()
+            implementação41()
             menu()
 
         #fecha a janela

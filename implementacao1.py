@@ -23,6 +23,6 @@ def implementação1():
     grouppedras = []
 
     #processo de movimentos 
-    moving(win,grouparvores,grouppedras,body,bateria,pontoderecolha,0)#e define que não é para contar a bateria
+    moving(win,grouparvores,grouppedras,body,bateria,pontoderecolha,0,0,0)#e define que não é para contar a bateria
 
     win.close()

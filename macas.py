@@ -1,8 +1,8 @@
 from graphics import * 
 from classes import *
 from outrasclasses import *
-def multiplemaças(win2,grouparvores,grouppedras):
-
+def multiplemaças(win2,grouparvores,grouppedras,maçafile,on):
+    if on == 0:
         #cria os botões 
         pointstart = Point(510,0)
         pointstart1 = Point(550,30)
@@ -99,17 +99,93 @@ def multiplemaças(win2,grouparvores,grouppedras):
         #dá return ao movimento de saida da janela e ás listas das maças e os seus centros
         return quitcounter, maçasgroup, maçasgroupcentre
 
+
+
+
+    if on == 1:
+
+        #cria os botões 
+        pointstart = Point(510,0)
+        pointstart1 = Point(550,30)
+        startbutton = butão(win2,pointstart,pointstart1,"Start")
+
+        pointquit = Point(560,0)
+        pointquit1 = Point(600,30)
+        quitbutton = butão(win2,pointquit,pointquit1,"Quit")
+
+        quitcounter = 0
+
+        #grupos de maças 
+        maçasgroup = []
+        maçasgroupcentre = []
+
+        for l in maçafile.readlines(): #lê o file inserido
+            l = str(l)
+            try:
+                x , y = l.split(" ")
+                x = int(x)
+                y = int(y)
+                counter = 0
+                macacentro= Point(x,y)
+                # verifica se o ponto da maça não coincide com obstáculos
+                for i in grouparvores:
+                    if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 40**2:
+                        counter = counter + 1
+                for i in grouppedras:
+                    if i.getX() - 40 < macacentro.getX() <  i.getX() + 40 and  i.getY() - 40 < macacentro.getY() <  i.getY() + 40:
+                        counter = counter + 1
+                if counter == 0:
+                    if maçasgroupcentre == []:
+                        #cria a maça
+                        maca = Maça(win2,macacentro)
+                        maçasgroup.append(maca)
+                        maçasgroupcentre.append(maca.centro)
+                    else:
+                        specialcounter = 0
+                        #verifica se a maça não coincide com outra maça 
+                        for i in maçasgroupcentre:
+                            if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 10**2:
+                                specialcounter = specialcounter +1
+
+                        if specialcounter == 0:
+                            #caso não coincida cria a maça
+                            maca = Maça(win2,macacentro)
+                            maçasgroup.append(maca)
+                            maçasgroupcentre.append(maca.centro)
+                        else:
+                            print("maça demasiado perto")    
+                else:
+                    print(" maça dentro de obstáculos")
+                        
+            except ValueError:
+                print("failed")
+        while True:
+            click = win2.getMouse()
+
+            if quitbutton.clicked(click):
+                quitcounter = 1
+                break
+            if startbutton.clicked(click):
+                break
+        #dá return ao movimento de saida da janela e ás listas das maças e os seus centros
+        return quitcounter, maçasgroup, maçasgroupcentre
+
+
+
+
+
+
 def myFunc(e):
     #retorna os valores das distancias das listas
     return e['distance']
 
-def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on):
+def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on,file,onfile):
         #reune os acontecimentos todos dentro das implementações 
 
         counter = 0
 
         #busca a ação de quit e as listas de maças
-        quitcounter, maçasgroup, maçasgroupcentre = multiplemaças(win2,grouparvores,grouppedras)
+        quitcounter, maçasgroup, maçasgroupcentre = multiplemaças(win2,grouparvores,grouppedras,file,onfile)
 
         while quitcounter == 0:
             for i in range(2):
@@ -206,7 +282,10 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on):
                     body.dodgeeverything(grouparvores,grouppedras,objective) 
                     if body.centre.getY() == pontoderecolha.box1centro.getY() and body.centre.getX() == pontoderecolha.box1centro.getX():
                         #cria maças e recomeça a fase de busca de maças
-                        quitcounter, maçasgroup, maçasgroupcentre = multiplemaças(win2,grouparvores,grouppedras)
+                        if onfile == 1: #se as maças vierem de um file feicha o programa
+                            quitcounter = 1
+                        else:
+                            quitcounter, maçasgroup, maçasgroupcentre = multiplemaças(win2,grouparvores,grouppedras,file,onfile)
                         counter = 0
 
 
@@ -226,7 +305,10 @@ def moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,on):
                     body.dodgeeverything(grouparvores,grouppedras,objective)
                     if body.centre.getY() == pontoderecolha.box2centro.getY() and body.centre.getX() == pontoderecolha.box2centro.getX():
                         #cria maças e recomeça a fase de busca de maças
-                        quitcounter, maçasgroup, maçasgroupcentre = multiplemaças(win2,grouparvores,grouppedras)
+                        if onfile == 1:#se as maças vierem de um file feicha o programa
+                            quitcounter = 1
+                        else:
+                            quitcounter, maçasgroup, maçasgroupcentre = multiplemaças(win2,grouparvores,grouppedras,file,onfile)
                         counter = 0
                 #move o robo em relação ás condições todas         
                 body.mover(body.x,body.y)

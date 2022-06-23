@@ -33,5 +33,5 @@ def implementação2():
         body = Robot(win2,10,10)
 
         #processo de movimentos 
-        moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,1)
+        moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,1,0,0)
         win2.close()

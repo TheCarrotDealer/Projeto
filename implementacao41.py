@@ -2,7 +2,7 @@ from graphics import *
 from classes import *
 from macas import *
 from outrasclasses import *
-def implementação4():
+def implementação41():
 
         #cria uma janela
         win2 = GraphWin("Projeto Ai implementação4", 600, 600)
@@ -17,6 +17,7 @@ def implementação4():
         #lê o file
         file = open("fileprojeto.txt","r")
         body.file(file)
+        macafile= open("maçasfile.txt","r")
 
         for i in body.obstgrouppedras: #transforma os pontos designados para pedras em pedras
             thex = i.getX() -30
@@ -40,6 +41,6 @@ def implementação4():
         grouppedras = body.obstgrouppedras
 
         #processo de movimentos 
-        moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,1,0,0)
+        moving(win2,grouparvores,grouppedras,body,bateria,pontoderecolha,1,macafile,1)
 
         win2.close()
