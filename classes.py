@@ -655,11 +655,11 @@ class Robot:
         if self.batery >= 0:
             self.bodybatery.setFill("light green")
         if on == 1: #sendo a variavel on responsável por identificar se temos a bateria em conta ou não
-            if self.batery >= 1500:
+            if self.batery >= 400:
                 self.bodybatery.setFill("yellow")
-            if self.batery >= 3000:
+            if self.batery >= 800:
                 self.bodybatery.setFill("red")
-            if self.batery >= 4800: #aqui temos o limite da bateria 
+            if self.batery >= 1200: #aqui temos o limite da bateria 
                 self.moveobjetive(ponto1) #muda o objetivo do robo para o centro da estação de recarga
                 self.bateryactive = 1 #confirma que está sem bateria
                 if self.centre.getX() == ponto1.getX() and self.centre.getY() == ponto1.getY(): #quando chega ao centro do centro de recarga espera 2 segundos e renicia a bateria
