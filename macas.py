@@ -99,9 +99,6 @@ def multiplemaças(win2,grouparvores,grouppedras,maçafile,on):
         #dá return ao movimento de saida da janela e ás listas das maças e os seus centros
         return quitcounter, maçasgroup, maçasgroupcentre
 
-
-
-
     if on == 1:
 
         #cria os botões 
@@ -169,9 +166,6 @@ def multiplemaças(win2,grouparvores,grouppedras,maçafile,on):
                 break
         #dá return ao movimento de saida da janela e ás listas das maças e os seus centros
         return quitcounter, maçasgroup, maçasgroupcentre
-
-
-
 
 
 
