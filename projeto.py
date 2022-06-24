@@ -1,3 +1,6 @@
+# Projeto feito pelo grupo 69
+# 102680 Luís Alberto Canha Abreu Gomes Gonçalves
+# 103545 Rúben Nelson da Silva Vieira Alves
 from graphics import * 
 from classes import *
 from random import *
@@ -14,9 +17,9 @@ def menu():
     win1.setCoords(0, 0, 1000, 550)
 
     #dá setup ao backround
-    menubackround = Image(Point(500,275),"menubackround.png")
+    menubackround = Image(Point(500,275),"sprites/menubackround.png")
     menubackround.draw(win1)
-    title = Image(Point(200,500),"title.png")
+    title = Image(Point(200,500),"sprites/title.png")
     title.draw(win1)
 
     #cria o butão easteregg localizado na maça no canto superior esquerdo

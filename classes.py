@@ -1,3 +1,6 @@
+# Projeto feito pelo grupo 69
+# 102680 Luís Alberto Canha Abreu Gomes Gonçalves
+# 103545 Rúben Nelson da Silva Vieira Alves
 from random import *
 from graphics import * 
 from math import *

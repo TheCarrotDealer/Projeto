@@ -1,3 +1,6 @@
+# Projeto feito pelo grupo 69
+# 102680 Luís Alberto Canha Abreu Gomes Gonçalves
+# 103545 Rúben Nelson da Silva Vieira Alves
 from graphics import * 
 from classes import *
 
@@ -7,7 +10,7 @@ class Maça:
         poentox = round(ponto.getX()) # arredonda as suas coordenadas para evitar erros
         poentoy = round(ponto.getY())
         
-        self.corpo = Image(Point(poentox,poentoy),"basketapples.png")
+        self.corpo = Image(Point(poentox,poentoy),"sprites/basketapples.png")
         self.corpo.draw(win)
 
         self.centro = Point(poentox,poentoy) #cria o seu centro
@@ -29,8 +32,8 @@ class Recolha:
         self.box1centro = Point((true1x + true2x)/2,(true1y + true2y)/2) #cria os seus centros
         self.box2centro = Point((true3x + true4x)/2,(true3y + true4y)/2)
 
-        self.box1 = Image(self.box1centro,"buraco2.png") #desenha-os
-        self.box2 = Image(self.box2centro,"buraco2.png")
+        self.box1 = Image(self.box1centro,"sprites/buraco2.png") #desenha-os
+        self.box2 = Image(self.box2centro,"sprites/buraco2.png")
         self.box1.draw(win)
         self.box2.draw(win)
 
@@ -45,9 +48,9 @@ class Obstaculo: #cria o osbtáculo pedra
         
         #verifica se é uma pedra ou um arbusto
         if type == 1:
-            self.obs = Image(self.obscentro,"rock.png")
+            self.obs = Image(self.obscentro,"sprites/rock.png")
         else:
-            self.obs = Image(self.obscentro,"bush.png")
+            self.obs = Image(self.obscentro,"sprites/bush.png")
 
         self.obs.draw(win)
 
@@ -55,7 +58,7 @@ class Arvore: #cria o obstaculo arvore
     def __init__(self, win, ponto1):
         self.centre = ponto1 #cria o seu centro
 
-        self.arvore = Image(self.centre,"arvore.png")
+        self.arvore = Image(self.centre,"sprites/arvore.png")
         self.arvore.draw(win)
 
 class butão: #cria um botão
@@ -89,5 +92,5 @@ class baterystation: #cria a estação de carregamento
         
         self.centro = Point((true1x + true2x)/2,(true1y + true2y)/2) #cria o seu centro
 
-        self.obs = Image(self.centro,"bateria.png")
+        self.obs = Image(self.centro,"sprites/bateria.png")
         self.obs.draw(win)

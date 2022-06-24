@@ -1,3 +1,6 @@
+# Projeto feito pelo grupo 69
+# 102680 Luís Alberto Canha Abreu Gomes Gonçalves
+# 103545 Rúben Nelson da Silva Vieira Alves
 from graphics import * 
 from classes import *
 from outrasclasses import *
@@ -312,7 +315,7 @@ def baseline(win2):
     #criação dos itens comuns em todas as implementações
 
     #backround
-    backround = Image(Point(300,300),"backround.png")
+    backround = Image(Point(300,300),"sprites/backround.png")
     backround.draw(win2)
 
     #bateria
