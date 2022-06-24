@@ -82,7 +82,7 @@ def multiplemaças(win2,grouparvores,grouppedras,maçafile,on):
                         maçasgroup.append(maca)
                         maçasgroupcentre.append(maca.centro)
                     else:
-                        specialcounter = 0
+                        specialcounter = 0 #serve para verificar se está em cima da maça
                         #verifica se a maça não coincide com outra maça 
                         for i in maçasgroupcentre:
                             if (macacentro.getX() - i.getX())**2 + (macacentro.getY() - i.getY())**2 <= 10**2:

@@ -4,8 +4,8 @@ from random import *
 from outrasclasses import *
 from implementacao1 import *
 from implementacao2 import *
-from implementacao3 import *
 from implementacao4 import *
+from implementacao3 import *
 from implementacao41 import *
 def menu():
 
