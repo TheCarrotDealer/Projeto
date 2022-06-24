@@ -694,7 +694,7 @@ class Robot:
 
             for i in range(numb-1): #cria os pontos pedidos
                 counter = 1
-                while counter ==1:
+                while counter >=1:
                     i = self.randompoint()
                     counter = 0 
                     for a in self.obstgroup:#verifica se os pontos estáo demasiado pertos
@@ -712,7 +712,7 @@ class Robot:
 
             for i in range(self.numbarvores - 1): #para o numero de árvores cria pontos random, tal que estes não criem objetos que se intersetam 
                 counter = 1
-                while counter ==1:
+                while counter >=1:
                     i = self.randompoint()
                     counter = 0 
                     for a in self.obstgroup:
@@ -725,7 +725,7 @@ class Robot:
 
             for i in range(self.numbpedras): #repete o processo para as pedras
                 counter = 1
-                while counter ==1:
+                while counter >=1:
                     i = self.randompoint()
                     counter = 0 
                     for a in self.obstgroup:
@@ -742,7 +742,7 @@ class Robot:
             self.obstgroup.append(first)
             for i in range(numb-1):
                 counter = 1
-                while counter ==1:
+                while counter >=1:
                     i = self.randompoint()
                     counter = 0 
                     for a in self.obstgroup:
